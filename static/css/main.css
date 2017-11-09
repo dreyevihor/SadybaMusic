@@ -1,0 +1,298 @@
+body {
+  position: relative;
+  font-size: 16px;
+  line-height: 1.4;
+  font-family: 'Open Sans', sans-serif;
+  min-width: 100vw;
+  min-height: 100vh;
+  padding-bottom: 3em;
+}
+
+/* Header */
+header {
+  z-index: 9;
+  top: 0;
+  position: fixed;
+  background: rgba(255, 255, 255, 1);
+  width: 100%;
+  box-shadow: 0 1em 1em rgba(0,0,0,0.5);
+}
+
+h1 {
+  font-family: 'Anton';
+  font-size: 5em;
+  text-transform: uppercase;
+  text-align: center;
+  padding-top: 0.4em;
+  margin-bottom: 0.4em;
+}
+
+h2 {
+  font-family: 'Anton';
+  font-size: 3em;
+  text-transform: uppercase;
+  text-align: center;
+  padding-top: 0.6em;
+  margin-bottom: 1em;
+}
+
+h3 {
+  font-family: 'Anton';
+  font-size: 1.5em;
+  text-transform: uppercase;
+  margin-bottom: 1em;
+}
+
+strong {
+  font-weight: bold;
+}
+
+p {
+  margin-bottom: 1.5em;
+}
+
+.overflowPage {
+  overflow: hidden;
+}
+
+/* Container */
+.container {
+  max-width: 800px;
+  padding-left: 2rem;
+  padding-right: 2rem;
+  margin: 0 auto;
+}
+
+
+/* Logo */
+.logo {
+  text-decoration: none;
+  display: inline-block;
+  vertical-align: top;
+}
+
+/* Big Text */
+.big-text {
+  font-family: 'Anton';
+  text-transform: uppercase;
+  font-size: 3.6em;
+  color: black;
+}
+
+/* Menu */
+.menu {
+  display: inline-block;
+  vertical-align: top;
+  font-size: 0.86em;
+  margin-left: 2em;
+}
+
+  .menu li {
+    display: inline-block;
+    margin-right: 0.5em;
+  }
+
+  .menu a {
+    color: #ABABAB;
+    text-transform: uppercase;
+    text-decoration: none;
+    display: inline-block;
+    padding: 2.1em 1.5em;
+  }
+
+  .menu a:hover,
+  .menu .active {
+    color: #000000;
+  }
+
+/* Cover */
+.cover {
+  display: flex;
+  width: 100%;
+  height: 30em;
+  background-image: url('../images/1.jpg');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-attachment: fixed;
+}
+  
+  .cover .container {
+    color: white;
+    display: block;
+    margin: auto;
+  }
+
+  .cover blockquote {
+    font-size: 2em;
+    font-weight: 300;
+    font-style: italic;
+    text-align: center;
+    text-shadow: 0 0 3px #000;
+  }
+
+/* Page */
+.page {
+  padding-top: 5.6em;
+}
+
+/* Article image */
+.article-image {
+  text-align: center;
+  margin-bottom: 1.5em;
+}
+
+/* Article */
+.article-content {
+  display: none;
+}
+
+.article h2 {
+  text-align: left;
+  margin-bottom: 0;
+  font-size: 1.5em;
+}
+
+.article-toggle {
+  font-size: 0.7em;
+  font-family: 'Open Sans';
+  border-bottom: 1px dotted;
+  cursor: pointer;
+}
+
+.article-toggle {
+  transition: color 0.3s;
+}
+
+.article-toggle:hover {
+  color: red;
+}
+
+.article-content {
+  padding-top: 1em;
+}
+
+
+/* Gallery */
+
+.gallery {
+  margin-bottom: 2em;
+}
+
+.gallery-main {
+  width: 50%;
+  height: 25em;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  margin-bottom: 0.3em;
+    display: inline-flex;
+
+}
+  .galery-list{
+  float: right;
+  }
+
+.gallery-item {
+  width: 7.5em;
+  height: 6em;
+  display: inline-flex;
+  float: right;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  cursor: pointer;
+  opacity: 0.5;
+  transition: opacity 0.3s;
+}
+
+.gallery-item.active,
+.gallery-item:hover {
+  opacity: 1;
+}
+
+/* Articles modal */
+.articles-modal section {
+  margin-bottom: 3em;
+}
+
+.articles-modal img {
+  margin-bottom: 1em;
+  max-width: 100%;
+}
+
+.articles-modal-more {
+  background: #3f51b5;
+  display: inline-block;
+  color: white;
+  text-decoration: none;
+  padding: 0.5em 1em;
+}
+
+.articles-modal-more:hover {
+  opacity: 0.8;
+}
+
+.hidden {
+  display: none;
+}
+
+/* Outarticle */
+.outarticle img {
+  max-width: 100%;
+  margin-bottom: 1em;
+}
+
+/* Modal */
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 99;
+  display: none;
+}
+
+.modal-container {
+  max-width: 900px;
+  height: 80%;
+  background: white;
+  margin: 0 auto;
+  position: relative;
+  top: 10%;
+}
+
+.modal-content {
+  height: 80%;
+  overflow: auto;
+  margin: 0 3.5em;
+  position: relative;
+  top: 10%;
+}
+
+.modal-close {
+  width: 2.5em;
+  height: 2.5em;
+  position: absolute;
+  right: 0.5em;
+  top: 0.5em;
+  cursor: pointer;
+  background: url('../images/close.png') no-repeat center;
+  background-size: cover;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
