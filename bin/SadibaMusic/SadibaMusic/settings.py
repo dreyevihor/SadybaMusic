@@ -37,6 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'Event.apps.EventConfig',
 ]
 
 MIDDLEWARE = [
@@ -75,8 +76,12 @@ WSGI_APPLICATION = 'SadibaMusic.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': os.path.join(BASE_DIR, 'db.postresql'),
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME':  'sadyba_db',
+        'USER': 'sadybamusic',
+        'PASSWORD': 'sadybamusic',
+        'HOST': 'localhost',
+        'PORT':'',
     }
 }
 
