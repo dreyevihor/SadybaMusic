@@ -1,11 +1,11 @@
 from django.contrib import admin
 
 
-from Event.models import Image_afisha, Event
-# Register your models here.
+from Event.models import Event, Image_portfolio
+#Register your models here.
 
 class EventImagesInline(admin.StackedInline):
-	model = Image_afisha
+	model = Image_portfolio
 	extra = 4
 
 class EventAdmin(admin.ModelAdmin):

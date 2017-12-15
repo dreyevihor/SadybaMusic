@@ -8,8 +8,9 @@
     <title>Bootstrap 101 Template</title>
 
     <!-- Bootstrap -->
-    <link href="css/bootstrap.css" rel="stylesheet">
-    <link href="css/style.css" rel="stylesheet">
+    {% load static %}
+    <link href="{% static 'css/bootstrap.css' %}" rel="stylesheet">
+    <link href="{% static 'css/style.css' %}" rel="stylesheet">
     <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
     <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
@@ -86,14 +87,13 @@
       <div class="header">
         <div class="collapse navbar-collapse" id="responsive-menu">
               <ul class="nav navbar-nav col-lg-6 big-nav">
-                <li id="aa" ><a href="#" ><p><i class="glyphicon glyphicon-user">Зареєструватися</i></p></a></li>
-                <li id="aa" ><a href="#" ><p><i class="glyphicon glyphicon-log-in">Ввійти</i></p></a></li>
-                <li id="aa" ><a href="#" ><p><i class="glyphicon glyphicon-star">Актори</i></p></a></li>
+                <li id="aa" ><a href="#" ><p><i class="glyphicon glyphicon-log-in"> Про нас</i></p></a></li>
+                <li id="aa" ><a href="#" ><p><i class="glyphicon glyphicon-star">Портфоліо</i></p></a></li>
                 <li id="aa" ><a href="#" ><p><i class="glyphicon glyphicon-glass">Заходи</i></p></a></li>
                 <li id="aa" ><a href="#" ><p><i class="glyphicon glyphicon-home">Головна</i></p></a></li>
                 <div class="container logo-header">
                   <div class="sadiba-logo">
-                    <img src="icon/sadiba_white.png" width="150px" height="150px">
+                    <img src="{% static 'icon/sadiba_white.png' %}" width="200px">
                   </div>
                 </div>
               </ul>
@@ -102,23 +102,19 @@
     </div>
   </div>
     <div class = "container-fluid">
-      <div class="row panel-container">
+      <div class="hidden row panel-container">
         <div class="sort-panel">
-          <div class="sity-sort">
-            <div class="btn-group">
-              <button type="button" data-toggle="dropdown" class="btn btn-default dropdown-toggle">Оберіть місто<span class="caret"></span></button>
-                <ul class="dropdown-menu">
-                  <li class="divider"></li>
-                  <li><a href="#">Київ</a></li>
-                  <li><a href="#">Полтава</a></li>
-                  <li><a href="#">Харків</a></li>
-                </ul>
-            </div>
-          </div>          
+          <div class="hidden city-sort blue semi-square">
+            <select>
+              <option value="">a</option>
+              <option value="">v</option>
+              <option value="">c</option>
+            </select>
+          </div>  
 
-           <div class="price-sort">
+           <div class=" hidden  price-sort">
 
-            <label for="amount"><h4>Price range:</h4></label>
+            <label for="amount"><h4>Ціновий діапазон:</h4></label>
             <div class="container-fluid">
             <div class="row">
             <input class="input-price" type="text" id="amount">
@@ -128,119 +124,70 @@
 
 
 
-          <div class="date-sort">
+          <div class="hidden date-sort">
             <p><h4>Оберіть дату з: </h4><input type="date" name="calendar">
             <br><h4>по</h4>
             <input type="date" name="calendar">
             </p>
           </div>
-        
+          
       </div>
     </div>
   </div>
+  
 
-    <div class="afish afish-swaper">
+    {%for event in event_list%}
+    {%for index, obj in event.items%}
+    <div class="afish afish-swaper" style="top: calc(15% + {{index}}*85%);">
       <div class="container-fluid">
         <div class="row">
-          <div class="col-lg-4 img-afish">
+          <div class="col-lg-4 img-afish" style="background-image: url({{obj.image}});">
           </div>
         <div class="text-afish col-lg-8">
 
           <div class="text-title">
-            <h1>День металурга. <br> м. Горішні плавні</h1>
+            <h1>{{obj.title}} <br> м. {{obj.place}}</h1>
           </div>
 
           <div class="afish-time">
-            <h1>15.07<br>22:00</h1>
+            <h1>{{obj.date|date:'j/n'}}<br>{{obj.date|date:'H:i'}}</h1>
           </div>
 
           <hr class="afish-divider">
           
           <div class="text">
-            <h3>У цей чудовий осінній вечір вам принесе радість концерт народної артистки України Катерини Бужинської. З її не менш чудовою концертною програмою, в яку входять такі перлини творчості: Желанный, text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text.</h3>
+            <h3>{{obj.text}}</h3>
           </div>
           <hr class="afish-divider">
-          <div>
-          <p><h4 style="margin-bottom: -20px;">Телефони для довідок</h4 "><br><h4>+38 095 175 27 21<br>+38 067 747 98 07</h4 ></p>
-            <button type="button" class="btn btn-success " style="margin-top: -72px; margin-left: 50px; height: 60px; float: right;"><h4>Замовити квитки</h4></button>
+          <div class="afish-bottom">
+            <div class = "phone-bottom">
+              <p><h4>Телефони для довідок: <br>+38 095 175 27 21<br>+38 067 747 98 07</h4></p>
+            </div>
+            <div class="afish-price">
+              <p>Ціна:</p>
+              
+              <p>
+                {%if obj.min_price is not None%}
+                {{obj.min_price}} - {{obj.max_price}} грн.
+              {%endif%}
+              {%if obj.price is not None%}
+                {{obj.price}} грн.
+              {%endif%}
+              </p>
+            </div>
           </div>
         </div>
     
       
         </div>
       </div>
-    </div>
-
-     <div class="afish-1 afish-swaper">
-      <div class="container-fluid">
-        <div class="row">
-          <div class="col-lg-4 img-afish">
-          </div>
-        <div class="text-afish col-lg-8">
-
-          <div class="text-title">
-            <h1>День металурга. <br> м. Горішні плавні</h1>
-          </div>
-
-          <div class="afish-time">
-            <h1>15.07<br>22:00</h1>
-          </div>
-
-          <hr class="afish-divider">
-          
-          <div class="text">
-            <h3>У цей чудовий осінній вечір вам принесе радість концерт народної артистки України Катерини Бужинської. З її не менш чудовою концертною програмою, в яку входять такі перлини творчості: <a href="https://www.youtube.com/watch?v=T3-g5_sWrjY">Желанный</a>, text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text.</h3>
-          </div>
-          <hr class="afish-divider">
-          <div>
-          <p><h4 style="margin-bottom: -20px;">Телефони для довідок</h4 "><br><h4>+38 095 175 27 21<br>+38 067 747 98 07</h4 ></p>
-            <button type="button" class="btn btn-success " style="margin-top: -72px; margin-left: 50px; height: 60px; float: right;">Замовити квитки</button>
-          </div>
-        </div>
-    
-      
-        </div>
-      </div>
-    </div>
-
-    <div class="afish-2 afish-swaper">
-      <div class="container-fluid">
-        <div class="row">
-          <div class="col-lg-4 img-afish">
-          </div>
-        <div class="text-afish col-lg-8">
-
-          <div class="text-title">
-            <h1>День металурга. <br> м. Горішні плавні</h1>
-          </div>
-
-          <div class="afish-time">
-            <h1>15.07<br>22:00</h1>
-          </div>
-
-          <hr class="afish-divider">
-          
-          <div class="text">
-            <h3>У цей чудовий осінній вечір вам принесе радість концерт народної артистки України Катерини Бужинської. З її не менш чудовою концертною програмою, в яку входять такі перлини творчості: <a href="https://www.youtube.com/watch?v=T3-g5_sWrjY">Желанный</a>, text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text.</h3>
-          </div>
-          <hr class="afish-divider">
-          <div>
-          <p><h4 style="margin-bottom: -20px;">Телефони для довідок</h4 "><br><h4>+38 095 175 27 21<br>+38 067 747 98 07</h4 ></p>
-            <button type="button" class="btn btn-success " style="margin-top: -72px; margin-left: 50px; height: 60px; float: right;">Замовити квитки</button>
-          </div>
-        </div>
-    
-      
-        </div>
-      </div>
-    </div>
-    
-
+    </div>   
+  {%endfor%}
+  {%endfor%}
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <!-- Include all compiled plugins (below), or include individual files as needed -->
-    <script src="js/bootstrap.js"></script>
-    <script src="/afish-swaper.js"></script>
-    <script src="js/jquery.easing.min.js"></script>
-    <script src="js/jquery.scrollify.min.js"></script>
+    <script src="{% static 'js/bootstrap.js'%}"></script>
+    <script src="{% static 'js/jquery.easing.min.js'%}"></script>
+    <script src="{% static 'js/jquery.scrollify.min.js'%}"></script>
   </body>
 </html>

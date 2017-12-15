@@ -15,7 +15,15 @@ Including another URLconf
 """
 from django.conf.urls import url
 from django.contrib import admin
+from django.conf import settings
+from django.conf.urls.static import static
+from django.contrib.staticfiles.urls import staticfiles_urlpatterns
+
+
+from Event import views
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
-]
+    url(r'^afisha/', views.afisha_view),
+    url(r'^portfolio/', views.portfolio_view),
+]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

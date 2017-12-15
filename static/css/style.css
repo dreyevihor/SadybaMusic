@@ -49,13 +49,13 @@
 	width: 300px;
 	position: relative;
 	float: top;
-	margin-top: -5px;
-	margin-bottom: -85px;
+	margin-top: 15px;
+	margin-bottom: 0px;
 	background-color: transparent;
 }
 .logo-white{
 	margin-left: -50px;
-	margin-top: -50px;
+	margin-top: 0px;
 }
 .contacts>ul>li{
 	list-style-type: none;
@@ -259,7 +259,6 @@
 	border-width: 5px;
 	border-color: #483D8B;
 	display: inline;
-	background-image: url(../icon/bujinska.jpg);
 	background-size: cover;
 }
 
@@ -280,8 +279,40 @@
 .date-sort p{
 	color: whire;
 }
+.city-sort{
+   background: url(http://i62.tinypic.com/15xvbd5.png) no-repeat 96% 0;
+   height: 29px;
+   overflow: hidden;
+   width: 200px;
+}
+.city-sort select{
+   border: none;
+   font-size: 14px;
+   height: 29px;
+   padding: 5px; /* If you add too much padding here, the options won't show in IE */
+   width: 268px;
+}
 
-.date-sort input{
+
+.city-sort.slate {
+   background: url(http://i62.tinypic.com/2e3ybe1.jpg) no-repeat right center;
+   height: 34px;
+   width: 240px;
+}
+
+.city-sort.slate select {
+   border: 1px solid #ccc;
+   font-size: 16px;
+   height: 34px;
+   width: 268px;
+}
+
+.semi-square {
+   -webkit-border-radius: 5px;
+   -moz-border-radius: 5px;
+   border-radius: 5px;
+}
+.date-sort input{	
 	width: 190px;
 	border-radius: 4px;
 	background-color: #800080;
@@ -309,14 +340,7 @@
 h4{
 	color: white;
 }
-.dropdown-menu{
-	background-color: #800080;
-	color: white;
-}
 
-.dropdown-menu li a{
-	color: white;
-}
 
 .input-price{
 	background-color: #800080;
@@ -376,10 +400,24 @@ h4{
 
 .afish-swaper{
 	position: absolute;
-	left: 20%;
+	left: 3%;
 	width: 80%;
 	height: 85%;
 	background: MediumSlateBlue;
 
 }
+.afish-bottom{
+	position: absolute;
+	bottom: 0;
+	display: -webkit-inline-flex;
+	display: -moz-inline-flex;
+	display: -ms-inline-flex;
+	display: -o-inline-flex;
+	display: inline-flex;
+	width: 100%;
+}
 
+.buy{
+	position: absolute;
+	right: 5%;
+}

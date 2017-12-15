@@ -1,0 +1,414 @@
+.topline {
+	height: 30px;
+	background: #333;
+	color: white;
+	margin-top: -20px;
+}
+.reg{
+	float: right;
+	font-size: 24px;
+	margin-top: -3px;
+}
+.enreg{
+	float: right;
+
+}
+.navbar{
+	margin-bottom: -20px;
+}
+.hat{
+	margin-top: -1px;
+	
+}
+.city-sort select {
+   background: transparent;
+   border: none;
+   font-size: 14px;
+   height: 29px;
+   padding: 5px; /* If you add too much padding here, the options won't show in IE */
+   width: 268px;
+}
+
+.city-sort.slate {
+   background: url(http://i62.tinypic.com/2e3ybe1.jpg) no-repeat right center;
+   height: 34px;
+   width: 240px;
+}
+
+.big-nav{
+	margin-right: 0%;
+}
+.nav{
+	width: 100%;
+}
+#aa{
+	float: right;
+	margin-top: 30px;
+	
+}
+.nav>li>a{
+	color: white;
+}
+.nav>li>a:hover{
+	color: red;
+	background-color: transparent;
+	
+}
+#aa>a>p>i{
+	font-size: 17px;
+	color: white;
+}
+
+.sadiba-logo{
+	width: 300px;
+	position: relative;
+	float: top;
+	margin-top: 15px;
+	margin-bottom: 0px;
+	background-color: transparent;
+}
+.logo-white{
+	margin-left: -50px;
+	margin-top: 0px;
+}
+.contacts>ul>li{
+	list-style-type: none;
+	color: white;
+	font-size: 32px;
+
+}
+.contacts{
+	float: right;
+	position: relative;
+	margin-top: 10%;
+}
+.contacts>ul{
+	float: right;
+	margin-right: 5%
+	margin-bottom: 5%;
+}
+.promo{
+	float: left;
+	position: relative;
+	margin-top: 10%;
+}
+.promo>p{
+	color: white;
+	font-size: 34px;
+}
+.iryna>li>p{
+		font-size: 18px;
+}
+.email>li{
+	font-size: 24px;
+	float: right;
+}
+
+.carousel{
+ 	position: absolute;
+	top: 0;
+	height: 70%;
+	width: 100%;	
+  	padding-top: 10px;
+}
+.carousel-inner{
+	height: 100%;
+
+
+
+}
+#carousel-img{
+		position:fixed;
+        z-index: -1;
+        top:0;
+        left:0; 
+        min-width:100%;
+        min-height:100%;
+}
+.item{
+	position: absolute;
+	height: 100%;
+	text-align: -webkit-center;
+	width: 100%;
+	background-size: cover;
+	background: no-repeat center top fixed;
+
+}
+.description p{
+	font-size: 30px;
+	font-style: italic;
+}
+.description{
+	position: absolute;
+	top:70%;
+	left: 10%;
+	height: 30%;
+	width: 70%;
+	text-align: -webkit-center;	
+
+}
+.screen-1{
+	background-image: url(../icon/1.jpg);
+	background-size: cover;
+	position: absolute;
+	top: 0;
+	height: 100%;
+	width: 100%
+}
+
+
+.panel{
+	position: absolute;
+	height: 100%;
+	width: 100%;
+}
+
+.footer{
+	position: absolute;
+	top:70%;
+	height: 30%;
+	width: 100%;
+	margin-left: -1px;
+	margin-right: -1px;
+	margin-bottom: -1px;
+	background: linear-gradient(to top, #4B0082, #800080);
+	}
+
+.copyright{
+	position: absolute;
+	top: 90%;
+	left: 45%;
+	color: white;
+}
+
+.foo-colm{
+	position: absolute;
+	height: 80%;
+	width: 25%;
+	background-color: transparent;
+}
+
+.navig{
+	top: 3%;
+	left: 7%;
+}
+
+.web{
+	top: 3%;
+	left: 37%;
+}
+
+.feedback{
+	top: 3%;
+	left: 67%;
+}
+.us{
+ 	position: absolute;
+	top: 0;
+	height: 70%;
+	width: 100%;	
+  	padding-top: 10px;
+  	left: -1px;
+  	background: linear-gradient(to right, rgba(128,0,128,1) 0%, rgba(128,40,128,1) 7%, rgba(255,255,255,1) 13%, rgba(255,255,255,1) 87%, rgba(255,255,255,1) 87%, rgba(128,40,128,1) 93%, rgba(128,0,128,1) 100%);
+}
+.about{
+	position: absolute;
+	top: 0;
+	height: 100%;
+	width: 74%;
+	left: 13%;
+}
+.about p{
+	font-size: 32px;
+}
+.foo-colm ul li{
+	 list-style-type: none;
+	 color: white;
+}
+.navig ul li a{
+	color: white;
+}
+
+.header{
+	background-image: url(../icon/1.jpg);
+	background-size: cover;
+	height: 15%;
+	position: fixed;
+	width: 100%;
+	z-index: 1;
+}
+
+.logo-header{
+	margin-top: -10px;
+	margin-left: -20px;
+}
+
+
+.sort-panel{
+	height: 100%;
+	position: absolute;
+	width: 75%;
+	
+}
+.panel-container{
+	top: 15%;
+	height: 100%;
+	position: fixed;
+	width: 20%;
+	background: linear-gradient(to right, transparent 78%, MediumSlateBlue  100%), url(../icon/sort-panel.jpg);
+	background-size: cover;
+
+}
+
+.afish{
+	
+	top: 15%;
+}
+.img-afish{
+	position: absolute;
+	width: 35%;
+	height: 88%;
+	margin: 4%;
+	border-style: solid;
+	border-width: 5px;
+	border-color: #483D8B;
+	display: inline;
+	background-size: cover;
+}
+
+
+.text-afish{
+	position: absolute;
+	top: 7%;
+	left: 43%;
+	width: 55%;
+	height: 88%;
+	background: #483D8B;
+}
+
+.btn{
+	margin-top: 10px;
+	width: 190px;
+}
+.date-sort p{
+	color: whire;
+}
+
+.date-sort input{
+	
+	width: 190px;
+	border-radius: 4px;
+	background-color: #800080;
+	color: white;
+	border: 1;
+	border-color: #4B0082;
+}
+
+
+.price-sort{
+	margin-top: 50px;
+}
+
+.btn-default{
+	background-color: #800080;
+	color: white;
+	border: 1;
+	border-color: #4B0082;
+	margin-top: 30px;
+
+}
+
+.date-sort{
+	margin-top: 50px;
+}
+h4{
+	color: white;
+}
+.dropdown-menu{
+	background-color: #800080;
+	color: white;
+}
+
+.dropdown-menu li a{
+	color: white;
+}
+
+.input-price{
+	background-color: #800080;
+	width: 45%;
+	color: white;
+	margin-left: 1%;
+	border-radius: 4px;
+	border: 1;
+	border-color: #4B0082;
+}
+
+.ui-widget-header{
+	background: #800080;
+}
+
+.ui-slider{
+	margin-top: 5px;
+}
+.afish-time{
+	float: right;
+	display: -webkit-inline-flex;
+	display: -moz-inline-flex;
+	display: -ms-inline-flex;
+	display: -o-inline-flex;
+	display: inline-flex;
+}
+.text-title{
+	display: -webkit-inline-flex;
+	display: -moz-inline-flex;
+	display: -ms-inline-flex;
+	display: -o-inline-flex;
+	display: inline-flex;
+}
+.afish-divider{
+	border-top: solid;
+	border-width: 5px;
+	margin-top: 0;
+}
+.afish-time{
+	color: red;
+	font-weight: 700;
+}
+.text-title{
+	color: PaleTurquoise;
+}
+
+.text{
+	color: LightCyan;
+}
+
+.afish-1{
+	top: 100%;
+}
+.afish-2{
+	top: 185%;
+}
+
+.afish-swaper{
+	position: absolute;
+	left: 5%;
+	width: 80%;
+	height: 85%;
+	background: MediumSlateBlue;
+
+}
+.afish-bottom{
+	position: absolute;
+	bottom: 0;
+	display: -webkit-inline-flex;
+	display: -moz-inline-flex;
+	display: -ms-inline-flex;
+	display: -o-inline-flex;
+	display: inline-flex;
+	width: 100%;
+}
+
+.buy{
+	position: absolute;
+	right: 5%;
+}

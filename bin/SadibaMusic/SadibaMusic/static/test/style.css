@@ -1,0 +1,8 @@
+.img {
+  display: block;
+  width: 200px;
+  height: 200px;
+  background: linear-gradient(to right, transparent 60%, white  100%), url(demo.jpg);
+  background-size: cover;
+  background-position: center;
+}

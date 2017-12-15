@@ -52,10 +52,12 @@ MIDDLEWARE = [
 
 ROOT_URLCONF = 'SadibaMusic.urls'
 
+
+TEMPLATES_PATH = os.path.join(os.path.split(os.path.split(BASE_DIR)[0])[0], 'static')
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [TEMPLATES_PATH],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -63,6 +65,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'django.template.context_processors.media',
             ],
         },
     },
@@ -80,8 +83,8 @@ DATABASES = {
         'NAME':  'sadyba_db',
         'USER': 'sadybamusic',
         'PASSWORD': 'sadybamusic',
-        'HOST': 'localhost',
-        'PORT':'',
+        'HOST': '127.0.0.1',
+        'PORT':'5432',
     }
 }
 
@@ -110,7 +113,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'RU-ru'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'Europe/Kiev'
 
 USE_I18N = True
 
@@ -122,4 +125,13 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.11/howto/static-files/
 
-STATIC_URL = '/static/'
+STATIC_URL = os.path.join(os.path.split(os.path.split(BASE_DIR)[0])[0], 'static/')
+PROJECT_DIR = os.path.dirname(os.path.abspath(__file__))
+STATIC_ROOT = os.path.join(PROJECT_DIR, 'static/')
+#STATIC_URL = STATIC_ROOT
+
+
+
+
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
+MEDIA_URL = os.path.join(os.path.abspath(MEDIA_ROOT), 'media/')
