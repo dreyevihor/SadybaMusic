@@ -8,8 +8,9 @@
     <title>Bootstrap 101 Template</title>
 
     <!-- Bootstrap -->
-    <link href="css/bootstrap.css" rel="stylesheet">
-    <link href="css/style.css" rel="stylesheet">
+   {% load static %}
+    <link href="{% static 'css/bootstrap.css' %}" rel="stylesheet">
+    <link href="{% static 'css/style.css' %}" rel="stylesheet">
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -70,7 +71,7 @@
                 <li id="aa" ><a href="#" ><p><i class="glyphicon glyphicon-home">Головна</i></p></a></li>
                 <div class="container logo-white">
                   <div class="sadiba-logo">
-                    <img src="icon/sadiba_white.png" width="300px">
+                    <img src="{% static 'icon/sadiba_white.png'%}" width="300px">
                   </div>
                 </div>
               </ul>
@@ -300,10 +301,10 @@
 
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.js"></script>
-    <script src="js/jquery.easing.min.js"></script>
-    <script src="js/jquery.scrollify.min.js"></script>
+    <script src="{% static 'js/jquery.easing.min.js'%}"></script>
+    <script src="{% static 'js/jquery.scrollify.min.js'%}"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->
-    <script src="js/bootstrap.js"></script>
-    <script src="js/main.js"></script>
+    <script src="{% static 'js/bootstrap.js'%}"></script>
+    <script src="{% static 'js/main.js'%}"></script>
   </body>
 </html>
