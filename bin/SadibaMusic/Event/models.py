@@ -5,6 +5,9 @@ from django.db import models
 
 from datetime import datetime
 import pytz
+
+
+from SadibaMusic.settings import MEDIA_ROOT
 # Create your models here.
 
 STATUS_CHOICES = (

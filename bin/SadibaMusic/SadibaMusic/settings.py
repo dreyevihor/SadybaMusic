@@ -134,4 +134,4 @@ STATIC_ROOT = os.path.join(PROJECT_DIR, 'static/')
 
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
-MEDIA_URL = os.path.join(os.path.abspath(MEDIA_ROOT), 'media/')
+MEDIA_URL = MEDIA_ROOT

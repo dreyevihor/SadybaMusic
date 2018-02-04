@@ -26,4 +26,5 @@ urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^afisha/', views.afisha_view),
     url(r'^portfolio/', views.portfolio_view),
+    url(r'^index/', views.index_view),
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

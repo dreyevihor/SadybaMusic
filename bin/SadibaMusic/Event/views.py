@@ -8,7 +8,6 @@ from django.shortcuts import render
 from django.template import Template, Context, RequestContext
 
 from Event.models import Event, Image_portfolio
-
 # Create your views here.
 
 def portfolio_view(request):
@@ -29,5 +28,7 @@ def afisha_view(request):
 	print(context)
 	return render(request, 'events.html', context)
 
-
-
+def index_view(request):
+	template_name = '../../static/index.html'
+	context = {}
+	return render(request, 'index.html', context)
