@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <title>Bootstrap 101 Template</title>
+
+    <!-- Bootstrap -->
+    {% load static %}
+    <link href="{% static 'css/bootstrap.css' %}" rel="stylesheet">
+    <link href="{% static 'css/style.css' %}" rel="stylesheet">
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script>
+    $( function() {
+      $( "#slider-range" ).slider({
+        range: true,
+        //step: 25,
+        min: 0,
+        max: 500,
+        values: [ 75, 300 ],
+        slide: function( event, ui ) {
+          $( "#amount" ).val( ui.values[ 0 ] );
+          $( "#amount-1" ).val( ui.values[ 1 ] );
+        }
+      });
+      $( "#amount" ).val( $( "#slider-range" ).slider( "values", 0 ) );
+      $( "#amount-1" ).val( $( "#slider-range" ).slider( "values", 1 ) );
+      
+      $("input#amount").change(function(){
+          var value1=$("input#amount").val();
+          var value2=$("input#amount-1").val();
+            if(parseInt(value1)>parseInt(value2)){
+              value1=value2;
+              $("input#amount").val(value1);
+            }
+          $("#slider-range").slider("values",0,value1);
+           }); 
+
+      $("input#amount-1").change(function(){
+          var value1=$("input#amount").val();
+          var value2=$("input#amount-1").val();
+            if(parseInt(value1)>parseInt(value2)){
+              value2=value1;
+              $("input#amount-1").val(value2);
+            }
+          $("#slider-range").slider("values",1,value2);
+           });
+
+      jQuery('#amount, #amount-1').keypress(function(event){
+        var key, keyChar;
+        if(!event) var event = window.event;
+
+        if(event.keyCode) key = event.keyCode;
+        else if(event.which) key = event.which;
+
+        if(key==null || key==0 || key==8 || key==13 || key==9 || key==46 || key==37 || key==39 )
+            return true;
+        keyChar=String.fromCharCode(key);
+
+        if(!/\d/.test(keyChar)) return false;
+
+
+
+      });
+
+
+    } );
+
+
+
+  </script>
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+  </head>
+  <body style="background: MediumSlateBlue;">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="header">
+        <div class="collapse navbar-collapse" id="responsive-menu">
+              <ul class="nav navbar-nav col-lg-6 big-nav">
+                <li id="aa" ><a href="http://127.0.0.1:8000/index/#4" ><p><i class="glyphicon glyphicon-log-in"> Про нас</i></p></a></li>
+                <li id="aa" ><a href="http://127.0.0.1:8000/portfolio/#1" ><p><i class="glyphicon glyphicon-star">Портфоліо</i></p></a></li>
+                <li id="aa" ><a href="http://127.0.0.1:8000/afisha/" ><p><i class="glyphicon glyphicon-glass">Заходи</i></p></a></li>
+                <li id="aa" ><a href="http://127.0.0.1:8000/index/" ><p><i class="glyphicon glyphicon-home">Головна</i></p></a></li>
+                <div class="container logo-header">
+                  <div class="sadiba-logo">
+                    <img src="{% static 'icon/sadiba_white.png' %}" width="200px">
+                  </div>
+                </div>
+              </ul>
+          </div>
+        </div>
+    </div>
+  </div>
+    <div class = "container-fluid">
+      <div class="row panel-container">
+        <div class="sort-panel">
+          <div class="city-sort blue semi-square">
+            <select>
+              <option value="">a</option>
+              <option value="">v</option>
+              <option value="">c</option>
+            </select>
+          </div>  
+
+           <div class="price-sort">
+
+            <label for="amount"><h4>Ціновий діапазон:</h4></label>
+            <div class="container-fluid">
+            <div class="row">
+            <input class="input-price" type="text" id="amount">
+            <input class="input-price" type="text" id="amount-1"></div></div>
+            <div id="slider-range"></div>
+          </div>
+
+
+
+          <div class="date-sort">
+            <p><h4>Оберіть дату з: </h4><input type="date" name="calendar">
+            <br><h4>по</h4>
+            <input type="date" name="calendar">
+            </p>
+          </div>
+          
+      </div>
+    </div>
+  </div>
+  
+
+    {%for event in event_list%}
+    {%for index, obj in event.items%}
+    <div class="afish afish-swaper" style="top: calc(15% + {{index}}*85%);">
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-lg-4 img-afish" style="background-image: url({{obj.image}});">
+          </div>
+        <div class="text-afish col-lg-8">
+
+          <div class="text-title">
+            <h1>{{obj.title}} <br> м. {{obj.place}}</h1>
+          </div>
+
+          <div class="afish-time">
+            <h1>{{obj.date|date:'j/n'}}<br>{{obj.date|date:'H:i'}}</h1>
+          </div>
+
+          <hr class="afish-divider">
+          
+          <div class="text">
+            <h3>{{obj.text}}</h3>
+          </div>
+          <hr class="afish-divider">
+          <div class="afish-bottom">
+            <div class = "phone-bottom">
+              <p><h4>Телефони для довідок: <br>+38 095 175 27 21<br>+38 067 747 98 07</h4></p>
+            </div>
+            <div class="afish-price">
+              <p>Ціна:</p>
+              
+              <p>
+                {%if obj.min_price is not None%}
+                {{obj.min_price}} - {{obj.max_price}} грн.
+              {%endif%}
+              {%if obj.price is not None%}
+                {{obj.price}} грн.
+              {%endif%}
+              </p>
+            </div>
+          </div>
+        </div>
+    
+      
+        </div>
+      </div>
+    </div>   
+  {%endfor%}
+  {%endfor%}
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="{% static 'js/bootstrap.js'%}"></script>
+    <script src="{% static 'js/jquery.easing.min.js'%}"></script>
+    <script src="{% static 'js/jquery.scrollify.min.js'%}"></script>
+  </body>
+</html>
