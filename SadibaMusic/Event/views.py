@@ -7,6 +7,10 @@ from collections import OrderedDict
 from django.shortcuts import render
 from django.template import Template, Context, RequestContext
 
+from rest_framework import mixins
+from rest_framework import generics
+
+
 from Event.models import Event, Image_portfolio
 # Create your views here.
 
@@ -32,3 +36,4 @@ def index_view(request):
 	template_name = '../../static/index.html'
 	context = {}
 	return render(request, 'index.html', context)
+

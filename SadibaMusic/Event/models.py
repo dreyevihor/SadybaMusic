@@ -33,38 +33,31 @@ class Event(models.Model):
 
 	def get_price(self):
 		if self.price == None:
-			return {
-					'min_price': self.min_price,
-					'max_price': self.max_price
-					}
+			return  {
+					'min_price':	self.min_price, 
+					'max_price':	self.max_price
+					  }
 		if self.price != None:
-			return {
-					'price' : self.price
-				   }
+			return {'price': self.price}
 		else:
 			raise BaseException('Price dont exist')
 
 	def get_text(self):
 		today = datetime.utcnow().replace(tzinfo=pytz.UTC)
 		if self.date < today:
-			return {
-					'text' : self.portfolio_text
-					}
+			return self.portfolio_text
 		else:
-			return {
-					'text' : self.afisha_text
-					}
+			return self.afisha_text
 
 	def get_image(self):
 		today = datetime.utcnow().replace(tzinfo=pytz.UTC)
 		if self.date < today:
 			images_obj = Image_portfolio.objects.filter(event = self)
 			images = [obj.image.url for obj in images_obj]
-			return {
-					'images' : images
-					}
+			return  images
+					
 		else:
-			return {'image' :self.afisha_image.url}
+			return self.afisha_image.url
 
 
 	def get_context(self):
@@ -72,8 +65,8 @@ class Event(models.Model):
 				'date' : self.date,
 				'place' : self.place
 				}
-		dict.update(self.get_text())
-		dict.update(self.get_image())
+		dict.update({'text': self.get_text()})
+		dict.update({'images': self.get_image()})
 		dict.update(self.get_price())
 		return dict
 
@@ -85,5 +78,7 @@ class Image_portfolio(models.Model):
 	class Meta():
 		db_table = 'Image'
 	image = models.ImageField(null = True, upload_to= 'media/')
-	event = models.ForeignKey(Event, null = True)
+	event = models.ForeignKey(Event, related_name = 'portfolio_image', on_delete = models.CASCADE, null = True)
  
+ 	def __unicode__(self):
+ 		return self.image.url
