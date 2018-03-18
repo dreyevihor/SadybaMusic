@@ -61,6 +61,7 @@ class EventSerializer(serializers.ModelSerializer):
 		instance.save()
 		for img in validated_data.get('portfolio_image'):
 			Image_portfolio.objects.create(event=instance, image=image)
+		return instance
 
 
 
