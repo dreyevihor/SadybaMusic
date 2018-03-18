@@ -88,16 +88,16 @@ DATABASES = {
         'PORT':'5432',
     }
 }
-"""
-REST_FRAMEWORK = [
 
-    'BASE_PERMISSION_CLASSES' = [
+REST_FRAMEWORK = {
 
-    ]
+    'BASE_PERMISSION_CLASSES': (
+        'rest_framework.permissions.AllowAny',
+    )
 
 
-]
-"""
+}
+
 # Password validation
 # https://docs.djangoproject.com/en/1.11/ref/settings/#auth-password-validators
 
