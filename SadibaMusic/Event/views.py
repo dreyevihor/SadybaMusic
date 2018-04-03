@@ -23,8 +23,7 @@ from Event.serializers import (EventSerializer,
 
 def portfolio_view(request):
 	template_name = '../../static/portfolio.html'
-	today = datetime.utcnow().replace(tzinfo=pytz.UTC)
-	events = Event.objects.filter(date__lte = today).filter(status = 'p')
+	events = Event.portfolio.all()
 	event_list = [{'%d' % i: events[i].get_context()} for i in range(events.count())]
 	context = {'event_list': event_list}
 	print(context)
@@ -32,8 +31,7 @@ def portfolio_view(request):
 
 def afisha_view(request):
 	template_name = '../../static/events.html'
-	today = datetime.utcnow().replace(tzinfo=pytz.UTC)
-	events = Event.objects.filter(date__gte = today)
+	events = Event.afisha.all()
 	event_list = [{'%d' % i: events[i].get_context()} for i in range(events.count())]
 	context = {'event_list': event_list}
 	print(context)
@@ -47,12 +45,12 @@ def index_view(request):
 #api views
 
 class AfishaList(generics.ListAPIView):
-	queryset = Event.objects.filter(date__gte = datetime.utcnow().replace(tzinfo=pytz.UTC)).order_by('date')
+	queryset = Event.afisha.all()
 	serializer_class = AfishaSerializer
 
 
 class PortfolioList(generics.ListAPIView):
-	queryset = Event.objects.filter(date__lte = datetime.utcnow().replace(tzinfo=pytz.UTC)).order_by('date')
+	queryset = Event.portfolio.all()
 	serializer_class = PortfolioSerializer
 
 

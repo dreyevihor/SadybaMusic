@@ -149,7 +149,7 @@
 
 }
 .screen-1{
-	background-image: url(../icon/1.jpg);
+	background-image: url(../icon/1.png);
 	background-size: cover;
 	position: absolute;
 	top: 0;
@@ -236,7 +236,7 @@
 	position: fixed;
 	width: 100%;
 	z-index: 1;
-	background: linear-gradient(to bottom, transparent 75%, MediumSlateBlue  100%), url(../icon/1.jpg);
+	background: linear-gradient(to bottom, transparent 75%, MediumSlateBlue  100%), url(../icon/1.png);
 }
 
 .logo-header{

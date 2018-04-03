@@ -7,7 +7,7 @@ from datetime import datetime
 import pytz
 
 
-from SadibaMusic.settings import MEDIA_ROOT
+from Event.managers import AfishaManager, PortfolioManager
 # Create your models here.
 
 STATUS_CHOICES = (
@@ -20,6 +20,7 @@ STATUS_CHOICES = (
 class Event(models.Model):
 	class Meta():
 		db_table = 'Event'
+		ordering = ('-date',)
 	title = models.CharField(null = True, blank = True, max_length = 30)
 	afisha_image = models.ImageField(null = True, blank = True, upload_to= 'media/')
 	afisha_text = models.TextField(null = True, blank = True, max_length = 450)
@@ -30,6 +31,9 @@ class Event(models.Model):
 	max_price = models.IntegerField(null = True, blank = True)
 	place = models.CharField(null = True, blank = True, max_length = 30)
 	status = models.CharField(null = True, blank = True, default = 'e', max_length = 1, choices = STATUS_CHOICES)
+	afisha = AfishaManager()
+	portfolio = PortfolioManager()
+	objects  = models.Manager()
 
 	def get_price(self):
 		if self.price == None:
