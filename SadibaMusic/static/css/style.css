@@ -1,3 +1,12 @@
+.afisha::-webkit-scrollbar { width: 0; }
+ 
+/* ie 10+ */
+.afisha { -ms-overflow-style: none; }
+ 
+/* фф (свойство больше не работает, других способов тоже нет)*/
+.afisha { overflow: -moz-scrollbars-none; }
+
+
 .topline {
 	height: 30px;
 	background: #333;
@@ -22,7 +31,6 @@
 }
 .city-sort select {
    background: transparent;
-   border: none;
    font-size: 14px;
    height: 29px;
    padding: 5px; /* If you add too much padding here, the options won't show in IE */
@@ -64,7 +72,7 @@
 	position: relative;
 	float: top;
 	margin-top: 15px;
-	margin-bottom: 0px;
+	left: 0;
 	background-color: transparent;
 }
 .logo-white{
@@ -236,12 +244,13 @@
 	position: fixed;
 	width: 100%;
 	z-index: 1;
-	background: linear-gradient(to bottom, transparent 75%, MediumSlateBlue  100%), url(../icon/1.png);
+	background: url(../icon/1.png);
+	border-bottom: 4px solid #666666;
 }
 
 .logo-header{
 	margin-top: -10px;
-	margin-left: -20px;
+	margin-left: 0;
 }
 
 
@@ -249,32 +258,155 @@
 	height: 100%;
 	position: absolute;
 	width: 75%;
+
 	
 }
 .panel-container{
-	top: 25%;
-	height: 100%;
+	z-index: 1;
+	left: calc(-20% + 15px);
+	top: 20%;
+	height: 80%;
 	position: fixed;
 	width: 20%;
-	background: linear-gradient(to right, transparent 78%, MediumSlateBlue  100%), url(../icon/sort-panel.jpg);
-	background-size: cover;
+	background-image: url(../icon/bricks-sort2.jpg);
+	border-right: 4px solid #666666;
+	animation: sort-to-left 2s ease;
+}
+#ttt{
+	position: absolute;
+	width: 100%;
+	height: 100%;
+}
+.ttt{
+	position: absolute; 
+	width: 50px;
+	height: 50px;
+	background-color: #888888;
+	background-image: url(../icon/filter.png);
+	display: inline;
+	top: 0;
+	left: 135%;
+	border: none;
+}
+.afisha{
+	position: fixed;
+	top: 15%;
+	margin-left: 0;
+	width: 100%;
+	height: 85%;
+	background-image: url(../icon/bricks-afish.jpg);
+	animation: afisha-to-left 2s ease;
+	overflow-x: scroll;
+
+}
+.sort-to-right{
+	left: 15px;
+	animation: sort-to-right 2s ease;
+
+}
+.af1ish-swaper{
+	position: static;
+	margin-left: 0;
+	width: 100%;
+	height: auto;
+	background-image: url(../icon/bricks-afish.jpg);
+	animation: afisha-to-left 2s ease;
+}
+
+.afisha-to-right{
+	margin-left: 20%;
+	width: 80%;
+	animation: afisha-to-right 2s ease;
 
 }
 
-.afish{
-	
-	top: 15%;
+
+
+
+@keyframes sort-to-right{
+	from {
+		left: calc(-20% + 15px);
+	}
+	to{
+		left: 15px;
+	}
+
+}
+
+@keyframes sort-to-left{
+	from {
+		left: 15px;
+	}
+	to{
+		left: calc(-20% + 15px);
+	}
+
+}
+
+@keyframes afisha-to-right{
+	from {
+		margin-left: 0%;
+		width: 100%;
+	}
+	to{
+		margin-left: 20%;
+		width: 80%;
+	}
+
+}
+
+@keyframes afisha-to-left{
+	from {
+		margin-left: 20%;
+		width: 80%;
+	}
+	to{
+		
+		margin-left: 0%;
+		width: 100%;
+	}
+
+}
+
+.zoom-img-container{
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	background-color: rgb(33, 33, 33, 0.6); 
+	z-index: 2;
+}
+
+.zoom-img{
+	opacity: 1;
+    height: 100%;
+    display: block;
+    margin: 0 auto;
+}
+
+
+.tape-lt{
+	position: absolute;
+	top: -40px;
+	left: -40px;	
+}
+.tape-rb{
+	position: absolute;
+	bottom: -60px;
+	right: -210px;
+}
+.img-container{
+	position: relative;
+	width: 550px;
+	margin: 50px;
+	margin-left: 150px;
+
 }
 .img-afish{
-	position: absolute;
-	width: 35%;
-	height: 88%;
-	margin: 4%;
+	width: 550px;
+	height: auto;
 	border-style: solid;
 	border-width: 5px;
 	border-color: #483D8B;
-	display: inline;
-	background-size: cover;
 }
 
 
@@ -291,38 +423,49 @@
 	margin-top: 10px;
 	width: 190px;
 }
+
+.date-sort{
+	margin-top: 100px;
+	margin-left: 15px;
+}
+
 .date-sort p{
-	color: whire;
+	color: green;
 }
 
 .date-sort input{
 	
 	width: 190px;
 	border-radius: 4px;
-	background-color: #800080;
+	background-color: #666666;
 	color: white;
 	border: 1;
-	border-color: #4B0082;
+	border-color: #999999;
 }
+.city-sort{
+	margin-top: 20px;
+	margin-left: 15px;
+}
+	.city-sort select{
+		position: absolute;
+		background-color: #666666;
+		color: white;
+		border: 1;
+		border-radius: 4px;
+		border-color: #999999;
+		width: 100%;
 
-.city-sort select{
-	position: absolute;
-	background-color: #800080;
-	color: white;
-	border-radius: 4px;
-	width: 100%;
-
-}
-.city-sort select option{
-	color: white;
-}
+	}
+		.city-sort select option{
+			color: white;
+		}
 
 .price-sort{
 	margin-top: 50px;
 }
 
 .btn-default{
-	background-color: #800080;
+	background-color: #996633;
 	color: white;
 	border: 1;
 	border-color: #4B0082;
@@ -330,14 +473,14 @@
 
 }
 
-.date-sort{
-	margin-top: 50px;
+.black-bold{
+	color: black;
+	font-style: bold;
 }
-h4{
-	color: white;
-}
+
+
 .dropdown-menu{
-	background-color: #800080;
+	background-color: #996633;
 	color: white;
 }
 
@@ -405,14 +548,7 @@ h4{
 	top: 185%;
 }
 
-.afish-swaper{
-	position: absolute;
-	left: 3%;
-	width: 80%;
-	height: 85%;
-	background: MediumSlateBlue;
 
-}
 .afish-bottom{
 	position: absolute;
 	bottom: 0;

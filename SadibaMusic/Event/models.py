@@ -31,9 +31,10 @@ class Event(models.Model):
 	max_price = models.IntegerField(null = True, blank = True)
 	place = models.CharField(null = True, blank = True, max_length = 30)
 	status = models.CharField(null = True, blank = True, default = 'e', max_length = 1, choices = STATUS_CHOICES)
+	objects  = models.Manager()
 	afisha = AfishaManager()
 	portfolio = PortfolioManager()
-	objects  = models.Manager()
+
 
 	def get_price(self):
 		if self.price == None:

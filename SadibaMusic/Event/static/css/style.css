@@ -149,7 +149,7 @@
 
 }
 .screen-1{
-	background-image: url(../icon/1.jpg);
+	background-image: url(../icon/1.png);
 	background-size: cover;
 	position: absolute;
 	top: 0;
@@ -236,7 +236,8 @@
 	position: fixed;
 	width: 100%;
 	z-index: 1;
-	background: linear-gradient(to bottom, transparent 75%, MediumSlateBlue  100%), url(../icon/1.jpg);
+	background: url(../icon/1.png);
+	border-bottom: 4px solid red;
 }
 
 .logo-header{
@@ -252,14 +253,98 @@
 	
 }
 .panel-container{
-	top: 15%;
-	height: 100%;
+	left: -20%;
+	top: 20%;
+	height: 80%;
 	position: fixed;
 	width: 20%;
-	background: linear-gradient(to right, transparent 78%, MediumSlateBlue  100%), url(../icon/sort-panel.jpg);
+	background-image: url(../icon/sort-panel.jpg);
 	background-size: cover;
+	border-right: 4px solid red;
+}
+#ttt{
+	position: absolute;
+	width: 50px;
+	height: 50px;
+	background-color: red;
+	display: inline;
+	top: 0;
+	left: 135%;
+}
+
+.sort-to-right{
+	left: 0;
+	animation: sort-to-right 2s ease;
 
 }
+.sort-to-left{
+	left: -20%;
+	animation: sort-to-left 2s ease;
+
+}
+
+.afisha-to-right{
+	left: 20%;
+	width: 80%;
+	animation: afisha-to-right 2s ease;
+
+}
+
+.afisha-to-left{
+	left: 0;
+	width: 100%;
+	animation: afisha-to-left 2s ease;
+
+}
+
+
+@keyframes sort-to-right{
+	from {
+		transform: translateX(-20%);
+	}
+	to{
+		transform: translateX(0);
+	}
+
+}
+
+@keyframes sort-to-left{
+	from {
+		transform: translateX(0);
+	}
+	to{
+		transform: translateX(-20%);
+	}
+
+}
+
+@keyframes afisha-to-right{
+	from {
+		transform: translateX(0);
+		width: 100%;
+	}
+	to{
+		transform: translateX(20%);
+		width: 80%;
+	}
+
+}
+
+@keyframes afisha-to-left{
+	from {
+		transform: translateX(20%);
+		width: 80%;
+	}
+	to{
+		
+		transform: translateX(0);
+		width: 100%;
+	}
+
+}
+
+
+
 
 .afish{
 	
@@ -305,6 +390,17 @@
 	border-color: #4B0082;
 }
 
+.city-sort select{
+	position: absolute;
+	background-color: #800080;
+	color: white;
+	border-radius: 4px;
+	width: 100%;
+
+}
+.city-sort select option{
+	color: white;
+}
 
 .price-sort{
 	margin-top: 50px;

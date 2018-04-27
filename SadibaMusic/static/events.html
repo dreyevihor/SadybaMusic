@@ -14,65 +14,12 @@
     <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
     <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-    <script>
-    $( function() {
-      $( "#slider-range" ).slider({
-        range: true,
-        //step: 25,
-        min: 0,
-        max: 500,
-        values: [ 75, 300 ],
-        slide: function( event, ui ) {
-          $( "#amount" ).val( ui.values[ 0 ] );
-          $( "#amount-1" ).val( ui.values[ 1 ] );
-        }
-      });
-      $( "#amount" ).val( $( "#slider-range" ).slider( "values", 0 ) );
-      $( "#amount-1" ).val( $( "#slider-range" ).slider( "values", 1 ) );
-      
-      $("input#amount").change(function(){
-          var value1=$("input#amount").val();
-          var value2=$("input#amount-1").val();
-            if(parseInt(value1)>parseInt(value2)){
-              value1=value2;
-              $("input#amount").val(value1);
-            }
-          $("#slider-range").slider("values",0,value1);
-           }); 
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 
-      $("input#amount-1").change(function(){
-          var value1=$("input#amount").val();
-          var value2=$("input#amount-1").val();
-            if(parseInt(value1)>parseInt(value2)){
-              value2=value1;
-              $("input#amount-1").val(value2);
-            }
-          $("#slider-range").slider("values",1,value2);
-           });
-
-      jQuery('#amount, #amount-1').keypress(function(event){
-        var key, keyChar;
-        if(!event) var event = window.event;
-
-        if(event.keyCode) key = event.keyCode;
-        else if(event.which) key = event.which;
-
-        if(key==null || key==0 || key==8 || key==13 || key==9 || key==46 || key==37 || key==39 )
-            return true;
-        keyChar=String.fromCharCode(key);
-
-        if(!/\d/.test(keyChar)) return false;
+   
 
 
-
-      });
-
-
-    } );
-
-
-
-  </script>
+    
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -81,7 +28,8 @@
       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
   </head>
-  <body style="background: MediumSlateBlue;">
+  <body style=" background-image: url({% static '/icon/bricks-afish.jpg'%});" >
+  <div id="ttt">
   <div class="container-fluid">
     <div class="row">
       <div class="header">
@@ -101,49 +49,51 @@
         </div>
     </div>
   </div>
-    <div class = "container-fluid hidden">
-      <div class="row panel-container">
+    <div class = "container-fluid">
+      <div class="row panel-container" v-bind:class="{'sort-to-right': show}">
         <div class="sort-panel">
           <div class="city-sort blue semi-square">
-            <select >
+          <p><h4 class="black-bold" >Оберіть місто: </h4>
+            <select v-model="place">
               <option value="">a</option>
               <option value="">v</option>
               <option value="">c</option>
             </select>
+          </p>
           </div>  
 
-           <div class="price-sort">
-
-            <label for="amount"><h4>Ціновий діапазон:</h4></label>
-            <div class="container-fluid">
-            <div class="row">
-            <input class="input-price" type="text" id="amount">
-            <input class="input-price" type="text" id="amount-1"></div></div>
-            <div id="slider-range"></div>
-          </div>
 
 
 
           <div class="date-sort">
-            <p><h4>Оберіть дату з: </h4><input type="date" name="calendar">
-            <br><h4>по</h4>
-            <input type="date" name="calendar">
-            </p>
+            <p><h4 class="black-bold">Оберіть дату з: </h4></p><input v-model="min_date" type="date" name="calendar">
+            <br><h4 class="black-bold">по</h4>
+            <input v-model="max_date" type="date" name="calendar">
+            
           </div>
+          <button class="ttt" v-on:click="show=!show"  ></button>
           
       </div>
     </div>
   </div>
   
-
-    {%for event in event_list%}
-    {%for index, obj in event.items%}
-    <div class="afish afish-swaper" style="top: calc(15% + {{index}}*85%);">
-      <div class="container-fluid">
-        <div class="row">
-          <div class="col-lg-4 img-afish" style="background-image: url({{obj.images}});">
-          </div>
-        <div class="text-afish col-lg-8">
+    <div class="afisha" v-bind:class="{'afisha-to-right': show, 'afisha-to-left': !show}">
+      <div class="container-fluid" v-for="(event, index) in events">
+        <div class="row">[[crutch]]
+        <div class="img-container" v-bind:style="indents[index]">
+            <div class="tape-lt">
+              <svg class="tape">
+                <polygon points="0,100 100,0 100,15 115,15 115,30 130,30 30,130 30,115 15,115 15,100 " fill="#736e6e" fill-opacity=".5" stroke-width="1" stroke="rgb(0,0,0)" stroke-opacity=".5"/>
+              </svg>
+            </div>
+            <img class="img-afish" v-bind:src="event.images" v-on:click="zoom_img=event.images"></img>
+            <div class="tape-rb">
+              <svg class="tape">
+                <polygon points="0,100 100,0 100,15 115,15 115,30 130,30 30,130 30,115 15,115 15,100 " fill="#736e6e" fill-opacity=".5" stroke-width="1" stroke="rgb(0,0,0)" stroke-opacity=".5"/>
+              </svg>
+            </div>
+         </div> 
+        <div class="text-afish col-lg-8 hidden">
 
           <div class="text-title">
             <h1>{{obj.title}} <br> м. {{obj.place}}</h1>
@@ -181,13 +131,23 @@
       
         </div>
       </div>
-    </div>   
-  {%endfor%}
-  {%endfor%}
+
+
+  </div>
+<div class="zoom-img-container" v-on:click="zoom_img=!zoom_img" v-if="zoom_img">
+  <img class="zoom-img" v-bind:src="zoom_img" v-if="zoom_img"></img>
+</div>
+
+
+</div>
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <!-- Include all compiled plugins (below), or include individual files as needed -->
     <script src="{% static 'js/bootstrap.js'%}"></script>
     <script src="{% static 'js/jquery.easing.min.js'%}"></script>
     <script src="{% static 'js/jquery.scrollify.min.js'%}"></script>
+    <script src="{% static 'js/vue.js'%}"></script>
+    <script src="{% static 'js/panel-slider.js'%}"></script>
+
+
   </body>
 </html>

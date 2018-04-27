@@ -3,6 +3,9 @@ from __future__ import unicode_literals
 from datetime import datetime
 import pytz
 from collections import OrderedDict
+from dateparser import parse
+
+from django_filters.rest_framework import DjangoFilterBackend
 
 from django.http import Http404
 from django.shortcuts import render
@@ -20,6 +23,14 @@ from Event.serializers import (EventSerializer,
 								AfishaSerializer, PortfolioSerializer)
 
 # Create your views here.
+
+def test(request):
+	template_name = '../../static/test.html'
+	events = Event.afisha.all()
+	event_list = [{'%d' % i: events[i].get_context()} for i in range(events.count())]
+	context = {'event_list': event_list}
+	print(context)
+	return render(request, 'test.html', context)
 
 def portfolio_view(request):
 	template_name = '../../static/portfolio.html'
@@ -45,8 +56,19 @@ def index_view(request):
 #api views
 
 class AfishaList(generics.ListAPIView):
-	queryset = Event.afisha.all()
 	serializer_class = AfishaSerializer
+	def get_queryset(self):
+		queryset = Event.afisha.all()
+		place = self.request.query_params.get('place', '')
+		min_date = self.request.query_params.get('min_date', '')
+		max_date = self.request.query_params.get('max_date', '')
+		if place is not '':
+			queryset = queryset.filter(place=place)
+		if min_date is not '' and parse(min_date) is not None:
+			queryset = queryset.filter(date__gte = parse(min_date).replace(tzinfo=pytz.UTC))
+		if max_date is not '' and parse(max_date) is not None:
+			queryset = queryset.filter(date__lte = parse(max_date).replace(tzinfo=pytz.UTC))
+		return queryset
 
 
 class PortfolioList(generics.ListAPIView):
