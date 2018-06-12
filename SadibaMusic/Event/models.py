@@ -84,6 +84,8 @@ class Image_portfolio(models.Model):
 		db_table = 'Image'
 	image = models.ImageField(null = True, upload_to= 'media/')
 	event = models.ForeignKey(Event, related_name = 'portfolio_image', on_delete = models.CASCADE, null = True)
- 
- 	def __unicode__(self):
- 		return self.image.url
+
+
+class Phones(models.Model):
+	phone = models.CharField(max_length = 30)
+	event = models.ForeignKey(Event, related_name = 'phones_of_managers', on_delete = models.CASCADE)

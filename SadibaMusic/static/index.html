@@ -3,14 +3,18 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
     <title>Bootstrap 101 Template</title>
 
     <!-- Bootstrap -->
    {% load static %}
     <link href="{% static 'css/bootstrap.css' %}" rel="stylesheet">
     <link href="{% static 'css/style.css' %}" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/test.css'%}">
+        <script src="https://rawgit.com/Wlada/vue-carousel-3d/master/dist/vue-carousel-3d.min.js"></script>
+
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.min.js"></script>
+        <script src="https://rawgit.com/Wlada/vue-carousel-3d/master/dist/vue-carousel-3d.min.js"></script>
+
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -21,58 +25,44 @@
   </head>
   <body>
 <!--first screen-->
+<span>
 <div class="container-fluid screen-1 panel">
   <div class="row">
-  <div class="container-fluid hidden-lg hidden-md hidden-sm">
-      <div class="row">
-        <div class="navbar navbar-inverse">
-        <div class="container">
-          <div class="navbar-header">
-
-          <div class="container">
-            <div class="sadiba-logo">
-              <img src="icon/sadiba_dark.png" width="65px">
-            </div>
-          </div>
-
-            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#responsive-menu">
-              <span class="sr-only">Відкрити навігацію</span>
-              <span class="icon-bar"></span>
-              <span class="icon-bar"></span>
-              <span class="icon-bar"></span>
-            </button>
-          </div>
-          <div class="collapse navbar-collapse" id="responsive-menu">
-            <ul class="nav navbar-nav">
-                <li id="aa" ><a href="http://127.0.0.1:8000/index/#4" ><p><i class="glyphicon glyphicon-log-in"> Про нас</i></p></a></li>
-                <li id="aa" ><a href="http://127.0.0.1:8000/portfolio/#1" ><p><i class="glyphicon glyphicon-star">Портфоліо</i></p></a></li>
-                <li id="aa" ><a href="http://127.0.0.1:8000/afisha/" ><p><i class="glyphicon glyphicon-glass">Заходи</i></p></a></li>
-                <li id="aa" ><a href="http://127.0.0.1:8000/index/" ><p><i class="glyphicon glyphicon-home">Головна</i></p></a></li>
-            </ul>
-          </div>
-        </div>          
-        </div>
-      </div>
-    </div>
-
-
-
-
-    <div class="container-fluid">
+      <div class="container-fluid">
       <div class="row">
         <div class="hat">
           <div class="collapse navbar-collapse" id="responsive-menu">
               <ul class="nav navbar-nav col-lg-6 big-nav">
-                <li id="aa" ><a href="http://127.0.0.1:8000/index/#4" ><p><i class="glyphicon glyphicon-log-in"> Про нас</i></p></a></li>
-                <li id="aa" ><a href="http://127.0.0.1:8000/portfolio/#1" ><p><i class="glyphicon glyphicon-star">Портфоліо</i></p></a></li>
-                <li id="aa" ><a href="http://127.0.0.1:8000/afisha/" ><p><i class="glyphicon glyphicon-glass">Заходи</i></p></a></li>
-                <li id="aa" ><a href="http://127.0.0.1:8000/index/" ><p><i class="glyphicon glyphicon-home">Головна</i></p></a></li>
+                <li class="header-link">
+                  <a href="/index/">
+                   <p><i class="glyphicon glyphicon-home"></i>Головна</p>
+                  </a>
+                </li>
+                <li class="header-link">
+                  <a href="/afisha/">
+                    <p><i class="glyphicon glyphicon-glass"></i>Заходи</p>
+                  </a>
+                </li>
+                <li class="header-link">
+                  <a href="/portfolio/#1">
+                    <p><i class="glyphicon glyphicon-star"></i>Портфоліо</p>
+                  </a>
+                </li>
+                <li class="header-link">
+                  <a href="/index/#4">
+                    <p><i class="glyphicon glyphicon-log-in"></i>Про нас</p>
+                  </a>
+                </li>
+                
+                
+
+              </ul>
                 <div class="container logo-white">
                   <div class="sadiba-logo">
                     <img src="{% static 'icon/sadiba_white.png'%}" width="300px">
                   </div>
                 </div>
-              </ul>
+              
           </div>
 
           <div class="container contacts col-lg-5 col-md-6 col-sm-7 col-xs-12">
@@ -106,69 +96,25 @@
 
 
 <!--second screen-->
-      <div class="container-fluid screen-2 panel" style="top: calc(1*100%);">
-      <div class="row">
-
-      <div id="carousel" class="carousel slide">
-        <ol class="carousel-indicators">
-        <li class = "active" data-target="#carousel" data-slide-to="0"></li>
-        <li data-target="#carousel" data-slide-to="1"></li>
-        <li data-target="#carousel" data-slide-to="2"></li>
-      </ol>
-
-
-      <div class="carousel-inner">
-        <div class="item">
-          <img src="icon/YJPl5RMP9Yc.jpg" id="carousel-img">
-          <div class="carousel-caption">
-            <h3>1 slide</h3>
-            <p>1 slide</p>
-          </div>
-        </div>
-        <div class="item">
-          <img src="icon/YJPl5RMP9Yc.jpg" id="carousel-img">
-          <div class="carousel-caption">
-            <h3>2 slide</h3>
-            <p>2 slide</p>
-          </div>
-        </div>
-        <div class="item">
-          <img src="icon/YJPl5RMP9Yc.jpg" id="carousel-img">
-          <div class="carousel-caption">
-            <h3>3 slide</h3>
-            <p>3 slide</p>
-          </div>
-
-        </div>  
-
+      <div id="ttt" class="container-fluid screen-2 panel" style="top: calc(1*100%);">
+      <div class="promo-slid">
+        <p>Завітайте на наші заходи!</p>
       </div>
-
-
-
-
-      <a href="#carousel" class="left carousel-control" data-slide="prev">
-        <span class="glyphicon glyphicon-chevron-left"></span>
-      </a>
-      <a href="#carousel" class="right carousel-control" data-slide="next">
-        <span class="glyphicon glyphicon-chevron-right"></span>
-      </a>
-    </div>
-
-    
-
-    <div class="container-fluid">
-      <div class="row">
-        <div class="description">
-          <p>Текст 1 Текст 1 Текст 1 Текст 1 Текст 1 Текст 1 Текст 1 Текст 1 Текст 1 Текст 1 Текст 1 </p>
-        </div>
-      </div>
-    </div>
-    </div>
-        
+          <div class="slider">
+            <carousel-3d  v-if="slides" ref="foo" :controls-visible="true" :controls-prev-html="'&#10092;'" :controls-next-html="'&#10093;'" 
+                         :controls-width="30" :controls-height="60" :clickable="false">
+              <slide v-for="(event, i) in events" :index="i">
+                <figure>
+                  <img :src="event.images">
+                </figure>
+              </slide>
+            </carousel-3d>
+          </div>
+                   
     </div>
 
     <!--3 screen-->
-      <div class="container-fluid screen-3 panel" style="top: calc(2*100%);"">
+      <div id="ttta" class="container-fluid screen-3 panel" style="top: calc(2*100%);"">
       <div class="row">
 
        <div id="carousel-2" class="carousel slide">
@@ -181,7 +127,7 @@
 
       <div class="carousel-inner">
         <div class="item"  >
-        <img src="icon/YJPl5RMP9Yc.jpg" id="carousel-img">
+        <img id="carousel-img">
           <div class="carousel-caption">
             <h3>1 slide</h3>
             <p>1 slide</p>
@@ -194,7 +140,7 @@
             <p>2 slide</p>
           </div>
         </div>
-        <div class="item">
+        <div class="item active">
           <img src="icon/YJPl5RMP9Yc.jpg" id="carousel-img">
           <div class="carousel-caption">
             <h3>3 slide</h3>
@@ -296,13 +242,18 @@
         
     </div> 
 
-
+    {% load static %}
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.js"></script>
     <script src="{% static 'js/jquery.easing.min.js'%}"></script>
     <script src="{% static 'js/jquery.scrollify.min.js'%}"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="https://unpkg.com/vue-async-computed@3.3.0"></script>
+    <script type="text/javascript" src="{% static 'js/test.js'%}"></script>
+
     <script src="{% static 'js/bootstrap.js'%}"></script>
     <script src="{% static 'js/main.js'%}"></script>
+    </span>
   </body>
 </html>

@@ -1,7 +1,12 @@
 # -*- coding: utf-8 -*- 
 
 from rest_framework import serializers
-from models import Event, Image_portfolio
+from Event.models import Event, Image_portfolio
+
+
+
+class PhoneSerializer(serializers.Serializer):
+	phone = serializers.CharField(max_length=30)
 
 
 class AfishaSerializer(serializers.Serializer):
@@ -14,6 +19,8 @@ class AfishaSerializer(serializers.Serializer):
 	place = serializers.CharField(max_length=30)
 	title = serializers.CharField(max_length=30)
 	text = serializers.CharField(max_length=450, source='get_text')
+	phones_of_managers = PhoneSerializer(many=True, allow_null=True)
+
 
 
 
@@ -62,8 +69,3 @@ class EventSerializer(serializers.ModelSerializer):
 		for img in validated_data.get('portfolio_image'):
 			Image_portfolio.objects.create(event=instance, image=image)
 		return instance
-
-
-
-class ImagePortfolioSerializer(serializers.Serializer):
-	image = serializers.ImageField(use_url='media/')

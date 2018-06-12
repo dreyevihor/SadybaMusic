@@ -25,7 +25,11 @@ SECRET_KEY = 'r-9lza+x47e66=bg^z1c7n*ts3#vm0o-21ylydfwq$e*z&ps7%'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [
+'*'
+]
+
+
 
 
 # Application definition
@@ -38,8 +42,14 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'Event.apps.EventConfig',
+    'Authentication.apps.AuthenticationConfig',
     'rest_framework',
+    'rest_framework.authtoken',
     'django_filters',
+    'corsheaders',
+    
+
+
 ]
 
 MIDDLEWARE = [
@@ -50,7 +60,13 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+	'corsheaders.middleware.CorsMiddleware',
+    'django.middleware.common.CommonMiddleware',
 ]
+
+
+
+CORS_ORIGIN_ALLOW_ALL = True
 
 ROOT_URLCONF = 'SadibaMusic.urls'
 
@@ -95,8 +111,10 @@ REST_FRAMEWORK = {
     'BASE_PERMISSION_CLASSES': (
         'rest_framework.permissions.AllowAny',
     ),
-
-    'DEFAULT_FILTER_BACKENDS': ('django_filters.rest_framework.DjangoFilterBackend',)
+    'DEFAULT_FILTER_BACKENDS': ('django_filters.rest_framework.DjangoFilterBackend',),
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework.authentication.TokenAuthentication',
+    )
 
 
 }
@@ -137,14 +155,15 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.11/howto/static-files/
 
-STATIC_URL = os.path.join(BASE_DIR, 'static/')
+STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'Event/static/')
 STATICFILES_DIRS =[
-    STATIC_URL,
+    os.path.join(BASE_DIR, 'static/'),
+
 ]
 
 
 
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
-MEDIA_URL = MEDIA_ROOT
+MEDIA_URL = '/media/'

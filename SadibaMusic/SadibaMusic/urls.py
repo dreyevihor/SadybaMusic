@@ -19,17 +19,20 @@ from django.conf import settings
 from django.conf.urls.static import static
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 
+from rest_framework.authtoken import views as rest_framework_views
 
-from Event import views
+
+from Event.views import * 
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
-    url(r'^afisha/', views.afisha_view),
-    url(r'^portfolio/', views.portfolio_view),
-    url(r'^index/', views.index_view),
-    url(r'^test/', views.test),
-    url(r'^api/afisha/$', views.AfishaList.as_view()),
-    url(r'^api/portfolio/', views.PortfolioList.as_view()),
-    url(r'^api/events/(?P<pk>[0-9]+)/$', views.EventDetail.as_view()),
-    url(r'^api/events/$', views.EventList.as_view()),
+    url(r'^afisha/', afisha_view),
+    url(r'^portfolio/', portfolio_view),
+    url(r'^index/', index_view),
+    url(r'^test/', test),
+    url(r'^api/afisha/$', AfishaList.as_view()),
+    url(r'^api/portfolio/', PortfolioList.as_view()),
+    url(r'^api/events/(?P<pk>[0-9]+)/$', EventDetail.as_view()),
+    url(r'^api/events/$', EventList.as_view()),
+    url(r'^api/get_auth_token/$', rest_framework_views.obtain_auth_token, name='get_auth_token'),
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
