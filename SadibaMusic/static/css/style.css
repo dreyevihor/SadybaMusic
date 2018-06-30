@@ -6,6 +6,13 @@
 /* фф (свойство больше не работает, других способов тоже нет)*/
 .afisha { overflow: -moz-scrollbars-none; }
 
+#portfolio-list::-webkit-scrollbar { width: 0; }
+ 
+/* ie 10+ */
+#portfolio-list { -ms-overflow-style: none; }
+ 
+/* фф (свойство больше не работает, других способов тоже нет)*/
+#portfolio-list { overflow: -moz-scrollbars-none; }
 
 .topline {
 	height: 30px;
@@ -46,7 +53,7 @@
 	margin-right: 0%;
 }
 .nav{
-
+	margin-top: 5px;
 	width: 100%;
 	display: flex;
 	justify-content: flex-end;
@@ -163,7 +170,8 @@
 	position: absolute;
 	top: 0;
 	height: 100%;
-	width: 100%
+	width: 100%;
+	overflow-x: hidden;
 }
 .screen-2{
 	background-color: rgb(138, 48, 255);
@@ -171,9 +179,10 @@
 }
 
 .panel{
-	position: absolute;
-	height: 100%;
-	width: 100%;
+	position: relative;
+	height: 100vh !important;
+	width: 100vw;
+	margin: 0;
 }
 
 .footer{
@@ -230,10 +239,22 @@
 	height: 100%;
 	width: 74%;
 	left: 13%;
+	align-content: flex-start;
 }
 .about p{
 	font-size: 32px;
 }
+
+.about div{
+	display: inline-flex;
+	width: 30%;
+}
+
+.about div ul>li{
+	font-size: 1.1em;
+
+}
+
 .foo-colm ul li{
 	 list-style-type: none;
 	 color: white;
@@ -275,11 +296,6 @@
 	background-image: url(../icon/background2.jpg);
 	border-right: 4px solid #666666;
 	animation: sort-to-left 2s ease;
-}
-#ttt{
-	position: absolute;
-	width: 100%;
-	height: 100%;
 }
 .ttt{
 	position: absolute; 

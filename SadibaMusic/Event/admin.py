@@ -1,7 +1,7 @@
 from django.contrib import admin
 
 
-from Event.models import Event, Image_portfolio, Phones
+from Event.models import *
 #Register your models here.
 
 class EventImagesInline(admin.StackedInline):
@@ -13,8 +13,12 @@ class PhoneInline(admin.StackedInline):
 	model = Phones
 	extra = 2
 
+class VideoInline(admin.StackedInline):
+	model = Video
+	extra = 2
+
 class EventAdmin(admin.ModelAdmin):
 	list_display = ('title', 'status')
-	inlines = [EventImagesInline, PhoneInline]
+	inlines = [EventImagesInline, PhoneInline, VideoInline]
 
 admin.site.register(Event, EventAdmin)

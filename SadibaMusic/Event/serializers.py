@@ -23,11 +23,16 @@ class AfishaSerializer(serializers.Serializer):
 
 
 
+class ImagePortfolioSerializer(serializers.Serializer):
+	image = serializers.ImageField(use_url='media/')
 
+class VideoPortfolioSerializer(serializers.Serializer):
+	link = serializers.URLField()
 
 class PortfolioSerializer(serializers.Serializer):
 	id = serializers.IntegerField(read_only=True)
-	images = serializers.ListField(child=serializers.CharField(), source='get_image')
+	portfolio_images = ImagePortfolioSerializer(many = True)
+	portfolio_video = VideoPortfolioSerializer(many = True)
 	date = serializers.DateTimeField()
 	price = serializers.IntegerField()
 	min_price = serializers.IntegerField()
@@ -36,8 +41,10 @@ class PortfolioSerializer(serializers.Serializer):
 	title = serializers.CharField(max_length=30)
 	text = serializers.CharField(max_length=450, source='get_text')
 
-class ImagePortfolioSerializer(serializers.Serializer):
-	image = serializers.ImageField(use_url='media/')
+
+
+
+
 
 class EventSerializer(serializers.ModelSerializer):
 	portfolio_image = ImagePortfolioSerializer(many=True)

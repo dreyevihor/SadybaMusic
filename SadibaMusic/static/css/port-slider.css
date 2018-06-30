@@ -1,0 +1,66 @@
+.carousel-3d-container figure {
+  margin: 0;
+  height: auto !important;
+  width: 300px !important;
+  
+}
+.carousel-3d-container{
+  height: 100% !important;
+}
+.carousel-3d-container figcaption {
+  position: absolute;
+  background-color: rgba(0, 0, 0, 0.5);
+  color: #fff;
+  bottom: 0;
+  padding: 15px;
+  font-size: 12px;
+  min-width: 100%;
+  box-sizing: border-box;
+}
+img{
+  height: auto !important;
+  width: 300px !important;
+}
+.carousel-3d-slide{
+  height: auto !important;
+  width: 300px !important;
+}
+.current{
+  height: auto !important;
+  width: auto !important;
+}
+
+.current>figure{
+  height: auto !important;
+  width: auto !important;
+}
+.current>figure>img{
+  height: auto !important;
+  width: 450px !important;
+}
+.current>figure>iframe{
+  height: 450px !important;
+  width: 600px !important;
+}
+
+.slider{
+  position: absolute;
+  top: 13%;
+  left: 0;
+  width: 100%;
+  height: 80%;
+  background-color: rgb(164, 94, 255);
+}
+.promo-slid{
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 13%;
+
+}
+  .promo-slid>p{
+    font-size: 3.3em;
+    color: white;
+    margin: auto 20px;
+  }

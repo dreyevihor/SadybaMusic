@@ -83,9 +83,13 @@ class Image_portfolio(models.Model):
 	class Meta():
 		db_table = 'Image'
 	image = models.ImageField(null = True, upload_to= 'media/')
-	event = models.ForeignKey(Event, related_name = 'portfolio_image', on_delete = models.CASCADE, null = True)
+	event = models.ForeignKey(Event, related_name = 'portfolio_images', on_delete = models.CASCADE, null = True)
 
 
 class Phones(models.Model):
 	phone = models.CharField(max_length = 30)
 	event = models.ForeignKey(Event, related_name = 'phones_of_managers', on_delete = models.CASCADE)
+
+class Video(models.Model):
+	link = models.URLField()
+	event = models.ForeignKey(Event, related_name = 'portfolio_video', on_delete = models.CASCADE)

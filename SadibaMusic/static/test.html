@@ -6,28 +6,17 @@
 
 </head>
 <body>
-<div class="container">
-<div class="promo-slid">
-	<p>Подивіться на наших котят!</p>
-</div>
-<div class="slider" id="example">
-  <carousel-3d :controls-visible="true" :controls-prev-html="'&#10092;'" :controls-next-html="'&#10093;'" 
-               :controls-width="30" :controls-height="60" :clickable="false">
-    <slide v-for="(slide, i) in slides" :index="i">
-      <figure>
-        <img src="http://mirpozitiva.ru/uploads/posts/2016-09/1474011210_15.jpg">
-      </figure>
-    </slide>
-    <slide :index="8" >
-      <figure>
-        <img src="http://bipbap.ru/wp-content/uploads/2017/09/44_20140925_1955853838-220x220.gif">
-      </figure>
-    </slide>
-  </carousel-3d>
-</div>
+<div id="form">
+<form method="post">
+  {% csrf_token %}
+  {{form}}
+  <button @click="submit()">Submit</button>
+</form>
 </div>
 <script type="text/javascript" src="{% static 'js/vue.js'%}"></script>
-<script src="https://rawgit.com/Wlada/vue-carousel-3d/master/dist/vue-carousel-3d.min.js"></script>
-<script type="text/javascript" src="{% static 'js/test.js'%}"></script>
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/js-cookie/2.2.0/js.cookie.min.js"></script>
+<script type="text/javascript" src="{% static 'js/test2.js'%}"></script>
+
 </body>
 </html>

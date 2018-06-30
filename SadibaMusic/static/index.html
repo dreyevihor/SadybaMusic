@@ -10,10 +10,8 @@
     <link href="{% static 'css/bootstrap.css' %}" rel="stylesheet">
     <link href="{% static 'css/style.css' %}" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="{% static 'css/test.css'%}">
-        <script src="https://rawgit.com/Wlada/vue-carousel-3d/master/dist/vue-carousel-3d.min.js"></script>
 
-    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.min.js"></script>
-        <script src="https://rawgit.com/Wlada/vue-carousel-3d/master/dist/vue-carousel-3d.min.js"></script>
+    
 
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
@@ -81,7 +79,7 @@
           </div>
 
           <div class="promo col-lg-5 col-md-6 col-sm-5 col-xs-12">
-            <p>Агенція по організації<br> концертів в Києві та областях України
+            <p>Агенція по організації<br> концертів та свят в Києві та областях України
             </p>
           </div>
         </div>
@@ -96,13 +94,14 @@
 
 
 <!--second screen-->
-      <div id="ttt" class="container-fluid screen-2 panel" style="top: calc(1*100%);">
+      <div id="ttt" class="container-fluid screen-2 panel">
       <div class="promo-slid">
         <p>Завітайте на наші заходи!</p>
       </div>
           <div class="slider">
             <carousel-3d  v-if="slides" ref="foo" :controls-visible="true" :controls-prev-html="'&#10092;'" :controls-next-html="'&#10093;'" 
-                         :controls-width="30" :controls-height="60" :clickable="false">
+                         :controls-width="30" :controls-height="60" :clickable="false" :autoplay="true"
+                         :count="events.length">
               <slide v-for="(event, i) in events" :index="i">
                 <figure>
                   <img :src="event.images">
@@ -114,7 +113,7 @@
     </div>
 
     <!--3 screen-->
-      <div id="ttta" class="container-fluid screen-3 panel" style="top: calc(2*100%);"">
+      <div id="ttta" class="container-fluid screen-3 panel">
       <div class="row">
 
        <div id="carousel-2" class="carousel slide">
@@ -167,7 +166,10 @@
     <div class="container-fluid">
       <div class="row">
         <div class="description">
-          <p>Текст 1 Текст 1 Текст 1 Текст 1 Текст 1 Текст 1 Текст 1 Текст 1 Текст 1 Текст 1 Текст 1 </p>
+          <p>Організація концертів та свят "під ключ" - від "А" до "Я"<br>
+          +38 095 175 27 21<br>
+          +38 067 747 98 07
+          </p>
         </div>
       </div>
     </div>
@@ -179,12 +181,46 @@
 
 
     <!--4 screen-->
-      <div class="container-fluid screen-4 panel" style="top: calc(3*100%);"">
+      <div class="container-fluid screen-4 panel">
       <div class="row">
 
       <div class="us">
         <div class="about">
           <p>Про нас:</p>
+          <h4>Агенція івентів "Садиба мьюзік" пропонує широкий спектр послуг по організації:</h4>
+          <div class="first-col">
+            <ul>
+              <li>Корпоративів;</li>
+              <li>Днів народження;</li>
+              <li>Ювілеїв, днів народження;</li>
+              <li>Випускних вечорів;</li>
+              <li>Презентації;</li>
+              <li>Календарні свята;</li>
+              <li>Свята міста, селища, села;</li>
+              <li>Свята Врожаю;</li>
+              <li>Зустрічі однокласників, одногрупників;</li>
+            </ul>
+          </div>
+          <div class="second-col">
+            <ul>
+              <li>Квіткове оформлення свят;</li>
+              <li>Індивідуальний сценарій, поетичні мініатюри, вірші, що стосуються безпосередньо замовників;</li>
+              <li>Надання послуг професійних ведучих, в тому числі популярних телеведучих;</li>
+              <li>Музичне оформлення (можливо індивідуальне замовлення пісень);</li>
+              <li>Участь в святах відомих артистів української естради, хореографічні, вокальні, гумористичні номери;</li>
+              <li>Індивідуальна поліграфія (запрошення, привітання, плакати інше);</li>
+            </ul>
+          </div>
+          <div class="third-col">
+            <ul>
+              <li>Фото, відео у професійному виконанні;</li>
+              <li>Салюти та феєрверки;</li>
+              <li>Надання послуг по вибору приміщення для проведення свята, транспорту;</li>
+              <li>Оформлення зали, технічне та світлове оформлення свята;</li>
+              <li>Торти на замовлення;</li>
+              <li>Живі скульптури (більше 30 видів), які будуть задіяні в індивідуальному плані (ангели, казкові герої, герої мультфільмів та кінофільмів);</li>
+            </ul>
+          </div>
         </div>
       </div>
 
@@ -249,7 +285,8 @@
     <script src="{% static 'js/jquery.scrollify.min.js'%}"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-    <script src="https://unpkg.com/vue-async-computed@3.3.0"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.min.js"></script>
+    <script src="https://rawgit.com/Wlada/vue-carousel-3d/master/dist/vue-carousel-3d.min.js"></script>
     <script type="text/javascript" src="{% static 'js/test.js'%}"></script>
 
     <script src="{% static 'js/bootstrap.js'%}"></script>

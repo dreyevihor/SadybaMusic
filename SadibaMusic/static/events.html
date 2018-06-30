@@ -101,40 +101,6 @@
             <img class="img-afish" v-bind:src="event.images" v-on:click="zoom_img=event.images"></img>
             <button class="buy-btn" v-on:click="openBuyForm(index)" >Замовити квитки</button>
          </div> 
-        <div class="text-afish col-lg-8 hidden">
-
-          <div class="text-title">
-            <h1>{{obj.title}} <br> м. {{obj.place}}</h1>
-          </div>
-
-          <div class="afish-time">
-            <h1>{{obj.date|date:'j/n'}}<br>{{obj.date|date:'H:i'}}</h1>
-          </div>
-
-          <hr class="afish-divider">
-          
-          <div class="text">
-            <h3>{{obj.text}}</h3>
-          </div>
-          <hr class="afish-divider">
-          <div class="afish-bottom">
-            <div class = "phone-bottom">
-              <p><h4>Телефони для довідок: <br>+38 095 175 27 21<br>+38 067 747 98 07</h4></p>
-            </div>
-            <div class="afish-price">
-              <p>Ціна:</p>
-              
-              <p>
-                {%if obj.min_price is not None%}
-                {{obj.min_price}} - {{obj.max_price}} грн.
-              {%endif%}
-              {%if obj.price is not None%}
-                {{obj.price}} грн.
-              {%endif%}
-              </p>
-            </div>
-          </div>
-        </div>
     
       
         </div>

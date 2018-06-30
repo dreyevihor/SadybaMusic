@@ -7,7 +7,8 @@ from dateparser import parse
 
 from django_filters.rest_framework import DjangoFilterBackend
 
-from django.http import Http404
+
+from django.http import Http404, HttpResponseRedirect
 from django.shortcuts import render
 from django.template import Template, Context, RequestContext
 
@@ -17,18 +18,42 @@ from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
 from rest_framework.permissions import IsAdminUser
+from rest_framework.pagination import LimitOffsetPagination
 
 from Event.models import Event, Image_portfolio
 from Event.serializers import (EventSerializer, 
 								AfishaSerializer, PortfolioSerializer)
 
+
+from Authentication.forms import LoginForm
+from django.views.generic.edit import FormView
+
+
 # Create your views here.
+class LoginView(FormView):
+	template_name = 'test.html'
+	from_class = LoginForm
+
+	def get(self, request):
+		form = self.from_class()
+		context = {'form': form}
+		return render(request, self.template_name, context)
+
+	def post(self, request):
+		form = self.from_class(request.POST)
+		context = {'form': form}
+		if form.is_valid():
+			return HttpResponseRedirect('/success/')
+
+		return render(request, self.template_name, context)
+
+
+
+
 
 def test(request):
 	template_name = '../../static/test.html'
-	events = Event.afisha.all()
-	event_list = [{'%d' % i: events[i].get_context()} for i in range(events.count())]
-	context = {'event_list': event_list}
+	context = {'form': LoginForm}
 	print(context)
 	return render(request, 'test.html', context)
 
@@ -74,6 +99,7 @@ class AfishaList(generics.ListAPIView):
 class PortfolioList(generics.ListAPIView):
 	queryset = Event.portfolio.all()
 	serializer_class = PortfolioSerializer
+	pagination_class = LimitOffsetPagination
 
 
 class EventDetail(generics.RetrieveUpdateDestroyAPIView):
