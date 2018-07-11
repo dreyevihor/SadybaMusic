@@ -1,0 +1,53 @@
+<html>
+    <head>
+        <title></title>
+        {% load static %}
+	    <link rel="stylesheet" href="{% static 'css/tickets/main.css' %}">
+    </head>
+    <body>
+        <div class="header">
+            <div class="head-capt">Оберіть захід та схему залу</div>
+        </div>
+        <div class="content">
+            <div class="events block">
+                <label class="block label">Оберіть захід: </label>
+                <input class="block" list="event"/>
+                <datalist id="event">
+                    <option value="Chrome">
+                    <option value="Firefox">
+                    <option value="Internet Explorer">
+                    <option value="Opera">
+                    <option value="Safari">
+                    <option value="Microsoft Edge">
+                </datalist>
+            </div>
+            <div class="halls block">
+                <label class="block label">Оберіть схему залу: </label>
+                <select class="block sel" size="4" multiple>
+                    <option value="asdas">aasdsd</option>
+                    <option value="asdas">zxzxx</option>
+                    <option value="asdas">zxczxczx</option>
+                    <option value="asdas">wwqeqweqw</option>
+                    <option value="asdas">asdasda</option>
+                    <option value="asdas">vvzxvzx</option>
+                    <option value="asdas">ggfdfddf</option>
+                </select>
+            </div>
+
+
+        </div>
+        <div class="footer">
+            <div class="r-link">
+                <p class="text-link">Далі</p>
+                <span class="to-right"></span>
+            </div>
+        </div>
+    
+    
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="{% static 'js/tickets/tickets-create.js' %}"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/js-cookie/2.2.0/js.cookie.min.js"></script>
+
+        
+    </body>
+</html>

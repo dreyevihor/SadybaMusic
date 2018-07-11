@@ -1,0 +1,54 @@
+<html>
+    <head>
+        <title>"св"</title>
+        {% load static %}
+	    <link rel="stylesheet" href="{% static 'css/tickets/main.css' %}">
+    </head>
+    <body>
+        <div class="header">
+            <div class="head-capt">Заповніть схему залу цінами</div>
+        </div>
+        <div class="content scroll">
+            <div class="row-item" v-for="(row, i) in rows">
+                <div class="param-item">
+                    <p>ряд з</p>
+                    <input type="number" v-model="row.row_from">
+                </div>
+                <div class="param-item">
+                        <p>ряд по</p>
+                        <input type="number" v-model="row.row_to">
+                </div>
+                <div class="param-item">
+                        <p>місце з</p>
+                        <input type="number" v-model="row.place_from">
+                </div>
+                <div class="param-item">
+                        <p>місце по</p>
+                        <input type="number" v-model="row.place_to">
+                </div>
+                <div class="param-item">
+                    <p>ціна</p>
+                    <input type="text" v-model="row.price">
+                </div>
+                <span class="close" @click="removeRow(i)"></span>
+            </div>
+            
+            
+            <div @click="addRow()" class="row-item plus-item">
+                <span class="plus"></span>
+            </div>
+
+        </div>
+        <div class="footer">
+            <div class="r-link">
+                <p class="text-link">Описати квиток</p>
+                <span class="to-right"></span>
+            </div>
+        </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="{% static 'js/tickets/hall-fill.js' %}"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/js-cookie/2.2.0/js.cookie.min.js"></script>
+        
+    </body>
+</html>

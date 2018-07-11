@@ -11,8 +11,9 @@ new Vue({
 	methods:{
 		submit: function(){
 			this.csrftoken = Cookies.get('csrftoken'); // Using JS Cookies library
-    		headers = {HTTP_X_CSRFTOKEN: this.csrftoken};
-			axios.post('/test/', {'login': this.login, 'password': this.password}, headers)
+    		headers = {"X-CSRFToken": this.csrftoken};
+			axios.post('/login/', {'login': this.login, 'password': this.password},
+			 {headers: headers})
 			console.log(data)
 			console.log(headers)
 		}

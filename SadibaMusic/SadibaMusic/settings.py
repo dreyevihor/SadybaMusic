@@ -47,6 +47,9 @@ INSTALLED_APPS = [
     'rest_framework.authtoken',
     'django_filters',
     'corsheaders',
+    'Halls',
+    'Tickets',
+    'Attendance',
     
 
 
@@ -63,7 +66,6 @@ MIDDLEWARE = [
 	'corsheaders.middleware.CorsMiddleware',
     'django.middleware.common.CommonMiddleware',
 ]
-
 
 
 CORS_ORIGIN_ALLOW_ALL = True
@@ -163,7 +165,7 @@ STATICFILES_DIRS =[
 ]
 
 
-
+DATA_UPLOAD_MAX_MEMORY_SIZE = 20971520
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
 MEDIA_URL = '/media/'

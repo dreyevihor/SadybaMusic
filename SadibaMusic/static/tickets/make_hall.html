@@ -1,0 +1,59 @@
+<html>
+    <head>
+        <title></title>
+        {% load static %}
+	    <link rel="stylesheet" href="{% static 'css/tickets/main.css' %}">
+    </head>
+    <body>
+        <div class="header">
+            <div class="head-capt">Опишіть схему залу</div>
+            <div class="head-file" id="name">
+                <label>Введіть назву залу</label>
+                <input type="text" v-model="title">
+            </div>
+        </div>
+        <div class="content scroll" id="app">
+            <div class="row-item" v-for="(row, i) in rows">
+                <div class="param-item">
+                    <p>ряд з</p>
+                    <input type="number" v-model="row.row_from">
+                </div>
+                <div class="param-item">
+                        <p>ряд по</p>
+                        <input type="number" v-model="row.row_to">
+                </div>
+                <div class="param-item">
+                        <p>місце з</p>
+                        <input type="number" v-model="row.place_from">
+                </div>
+                <div class="param-item">
+                        <p>місце по</p>
+                        <input type="number" v-model="row.place_to">
+                </div>
+                <div class="param-item" v-if="row.row_from>row.row_to" style="color: red;">
+                    ПОМИЛКА!!!
+                </div>
+                <span class="close" @click="removeRow(i)"></span>
+            </div>
+            
+            <div @click="addRow()" class="row-item plus-item">
+                <span class="plus"></span>
+            </div>
+            [[rows]]
+        </div>
+        <div class="footer">
+            <a>
+            <form method="POST" class="r-link" id="send" @click="submit">
+                {% csrf_token %}
+                <p class="text-link">Заповнити цінами</p>
+                <span class="to-right"></span>
+            </form>
+        </a>
+        </div>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/js-cookie/2.2.0/js.cookie.min.js"></script> 
+    <script src="{% static 'js/tickets/hall.js' %}"></script>
+
+    </body>
+</html>

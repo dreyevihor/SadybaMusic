@@ -1,0 +1,15 @@
+$(function(){
+    $("#barcode").resizable();
+  });
+$(function(){
+    $("#price").resizable();
+  });
+$(function(){
+    $("#row").resizable();
+  });
+$(function(){
+    $("#place").resizable();
+  });
+$(function(){
+    $("#template").resizable();
+  });

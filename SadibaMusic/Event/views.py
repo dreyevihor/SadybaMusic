@@ -8,7 +8,7 @@ from dateparser import parse
 from django_filters.rest_framework import DjangoFilterBackend
 
 
-from django.http import Http404, HttpResponseRedirect
+from django.http import Http404, HttpResponseRedirect, HttpResponse
 from django.shortcuts import render
 from django.template import Template, Context, RequestContext
 
@@ -25,37 +25,11 @@ from Event.serializers import (EventSerializer,
 								AfishaSerializer, PortfolioSerializer)
 
 
-from Authentication.forms import LoginForm
-from django.views.generic.edit import FormView
 
 
 # Create your views here.
-class LoginView(FormView):
-	template_name = 'test.html'
-	from_class = LoginForm
-
-	def get(self, request):
-		form = self.from_class()
-		context = {'form': form}
-		return render(request, self.template_name, context)
-
-	def post(self, request):
-		form = self.from_class(request.POST)
-		context = {'form': form}
-		if form.is_valid():
-			return HttpResponseRedirect('/success/')
-
-		return render(request, self.template_name, context)
 
 
-
-
-
-def test(request):
-	template_name = '../../static/test.html'
-	context = {'form': LoginForm}
-	print(context)
-	return render(request, 'test.html', context)
 
 def portfolio_view(request):
 	template_name = '../../static/portfolio.html'
@@ -77,6 +51,9 @@ def index_view(request):
 	template_name = '../../static/index.html'
 	context = {}
 	return render(request, 'index.html', context)
+
+def sitemap_view(request):
+	return HttpResponse(open('sitemap.xml').read(), content_type='text/xml')
 
 #api views
 

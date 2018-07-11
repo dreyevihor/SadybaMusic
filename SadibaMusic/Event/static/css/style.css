@@ -6,6 +6,13 @@
 /* фф (свойство больше не работает, других способов тоже нет)*/
 .afisha { overflow: -moz-scrollbars-none; }
 
+#portfolio-list::-webkit-scrollbar { width: 0; }
+ 
+/* ie 10+ */
+#portfolio-list { -ms-overflow-style: none; }
+ 
+/* фф (свойство больше не работает, других способов тоже нет)*/
+#portfolio-list { overflow: -moz-scrollbars-none; }
 
 .topline {
 	height: 30px;
@@ -27,7 +34,6 @@
 }
 .hat{
 	margin-top: -1px;
-	
 }
 .city-sort select {
    background: transparent;
@@ -47,31 +53,33 @@
 	margin-right: 0%;
 }
 .nav{
+	margin-top: 5px;
 	width: 100%;
+	display: flex;
+	justify-content: flex-end;
 }
-#aa{
-	float: right;
-	margin-top: 30px;
+.header-link>a>p>i{
+	margin: 4px;
+
 	
 }
 .nav>li>a{
 	color: white;
 }
 .nav>li>a:hover{
-	color: red;
+	color: white;
 	background-color: transparent;
 	
 }
-#aa>a>p>i{
-	font-size: 17px;
+.header-link>a>p{
+	font-size: 1.5em;
 	color: white;
 }
 
 .sadiba-logo{
 	width: 300px;
-	position: relative;
-	float: top;
-	margin-top: 15px;
+	position: absolute;
+	margin-top: 0;
 	left: 0;
 	background-color: transparent;
 }
@@ -86,9 +94,9 @@
 
 }
 .contacts{
-	float: right;
-	position: relative;
-	margin-top: 10%;
+	position: absolute;
+	right: 0;
+	top: 40%;
 }
 .contacts>ul{
 	float: right;
@@ -97,8 +105,8 @@
 }
 .promo{
 	float: left;
-	position: relative;
-	margin-top: 10%;
+	position: absolute;
+	top: 40%;
 }
 .promo>p{
 	color: white;
@@ -162,14 +170,19 @@
 	position: absolute;
 	top: 0;
 	height: 100%;
-	width: 100%
+	width: 100%;
+	overflow-x: hidden;
+}
+.screen-2{
+	background-color: rgb(138, 48, 255);
+
 }
 
-
 .panel{
-	position: absolute;
-	height: 100%;
-	width: 100%;
+	position: relative;
+	height: 100vh !important;
+	width: 100vw;
+	margin: 0;
 }
 
 .footer{
@@ -226,10 +239,22 @@
 	height: 100%;
 	width: 74%;
 	left: 13%;
+	align-content: flex-start;
 }
 .about p{
 	font-size: 32px;
 }
+
+.about div{
+	display: inline-flex;
+	width: 30%;
+}
+
+.about div ul>li{
+	font-size: 1.1em;
+
+}
+
 .foo-colm ul li{
 	 list-style-type: none;
 	 color: white;
@@ -240,12 +265,12 @@
 
 .header{
 	background-size: cover;
-	height: 20%;
+	height: 15%;
 	position: fixed;
 	width: 100%;
 	z-index: 1;
 	background: url(../icon/1.png);
-	border-bottom: 4px solid #666666;
+	border-bottom: 4px solid rgb(138, 48, 255);
 }
 
 .logo-header{
@@ -264,18 +289,13 @@
 .panel-container{
 	z-index: 1;
 	left: calc(-20% + 15px);
-	top: 20%;
-	height: 80%;
+	top: 15%;
+	height: 85%;
 	position: fixed;
 	width: 20%;
-	background-image: url(../icon/bricks-sort2.jpg);
+	background-image: url(../icon/background2.jpg);
 	border-right: 4px solid #666666;
 	animation: sort-to-left 2s ease;
-}
-#ttt{
-	position: absolute;
-	width: 100%;
-	height: 100%;
 }
 .ttt{
 	position: absolute; 
@@ -294,7 +314,7 @@
 	margin-left: 0;
 	width: 100%;
 	height: 85%;
-	background-image: url(../icon/bricks-afish.jpg);
+	background-image: url(../icon/background9.jpg);
 	animation: afisha-to-left 2s ease;
 	overflow-x: scroll;
 
@@ -374,6 +394,9 @@
 	height: 100%;
 	background-color: rgb(33, 33, 33, 0.6); 
 	z-index: 2;
+	display: flex;
+	align-items: center;
+	justify-content: center;
 }
 
 .zoom-img{
@@ -390,11 +413,37 @@
 	top: -40px;
 	left: -40px;	
 }
-.tape-rb{
+.buy-btn{
 	position: absolute;
-	bottom: -60px;
-	right: -210px;
+	width: 150px;
+	height: 70px;
+	right: -40px;
+	bottom: -15px;
+	text-decoration:none; 
+	 text-align:center; 
+	 padding:11px 32px; 
+	 border:solid 1px #2a7200; 
+	 -webkit-border-radius:4px;
+	 -moz-border-radius:4px; 
+	 border-radius: 4px; 
+	 font:18px Arial, Helvetica, sans-serif; 
+	 font-weight:bold; 
+	 color:#ffffff; 
+	 background-color:#40cf2d; 
+	 background-image: -moz-linear-gradient(top, #40cf2d 0%, #0db32e 100%); 
+	 background-image: -webkit-linear-gradient(top, #40cf2d 0%, #0db32e 100%); 
+	 background-image: -o-linear-gradient(top, #40cf2d 0%, #0db32e 100%); 
+	 background-image: -ms-linear-gradient(top, #40cf2d 0% ,#0db32e 100%); 
+	 filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#0db32e', endColorstr='#0db32e',GradientType=0 ); 
+	 background-image: linear-gradient(top, #40cf2d 0% ,#0db32e 100%);   
+	 -webkit-box-shadow:0px 0px 2px #969696, inset 0px 0px 1px #ffffff; 
+	 -moz-box-shadow: 0px 0px 2px #969696,  inset 0px 0px 1px #ffffff;  
+	 box-shadow:0px 0px 2px #969696, inset 0px 0px 1px #ffffff;
+
 }
+
+
+
 .img-container{
 	position: relative;
 	width: 550px;
@@ -402,6 +451,8 @@
 	margin-left: 150px;
 
 }
+
+
 .img-afish{
 	width: 550px;
 	height: auto;
@@ -436,7 +487,7 @@
 
 .date-sort input{
 	
-	width: 190px;
+	width: 110%;
 	border-radius: 4px;
 	background-color: #666666;
 	color: white;
@@ -475,7 +526,7 @@
 }
 
 .black-bold{
-	color: black;
+	color: white;
 	font-style: bold;
 }
 
@@ -575,3 +626,49 @@
 		color: white;
 		font-size: 30px;
 			}
+
+
+.buy-info{
+	position: absolute;
+	width: 50%;
+	height: 75%;
+	border-radius: 5px;
+	background-color: #E5D5FA;
+}
+
+	.buy-info p{
+		font-size: 2em;
+		text-align: center;
+	}
+
+.close{
+    position: absolute;
+    top: -60px;
+    right: -60px;
+    width: 55px;
+    height: 55px;
+    cursor: pointer;
+    border: 4px solid red;
+    border-radius: 50%;
+}
+
+.close:before,
+.close:after {
+    content: "";
+    position: absolute;
+    top: 21px;
+    left: 10px;
+    width: 26px;
+    height: 4px;
+    background: #e62f57;
+}
+
+.close:before {
+    webkit-transform: rotate(45deg);
+    transform: rotate(45deg);
+}
+
+.close:after {
+    webkit-transform: rotate(-45deg);
+    transform: rotate(-45deg);
+}

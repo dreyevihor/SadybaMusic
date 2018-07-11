@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	{% load static %}
+	<link rel="stylesheet" href="{% static 'css/tickets/main.css' %}">
+</head>
+<body>
+<div class="header">
+	<div class="head-capt">Опишіть квиток</div>
+	<div id="img" class="head-file">
+		<template v-if="!image">
+			<label for="ticket">Оберіть шаблон:</label>
+			<input type="file" name="ticket" @change="onFileChange">
+		</template>
+		<template v-else>
+			<button @click="removeImage">Видалити шаблон</button>
+		</template>
+	</div>
+</div>
+<div id="app" class="content">
+	<div id="price" :class="{ rotate: rotatePrice }" class="simp-text drag">
+		<span class="spine" @click="rotatePrice=!rotatePrice"></span>
+			ціна
+	</div>	
+	<div id="place" class="simp-text drag" :class="{ rotate: rotatePlace }">
+		<span class="spine" @click="rotatePlace=!rotatePlace"></span>
+			місце
+	</div>
+	<div id="row" class="simp-text drag" :class="{ rotate: rotateRow }">
+		<span class="spine" @click="rotateRow=!rotateRow"></span>
+			ряд
+	</div>
+	<div id="barcode" class="barcode drag" :class="{ rotate: rotateBarcode }">
+	</div>
+	<div id="template" class="template drag">
+		<img :src="image">
+	</div>
+</div>
+
+
+<div class="footer">
+	<div class="r-link" id="submit" @click="submit">
+			{% csrf_token %}
+		<p class="text-link">Згенерувати <br>квитки</p>
+		<span class="to-right"></span>
+	</div>
+</div>
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/js-cookie/2.2.0/js.cookie.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<script type="text/javascript" src="{% static 'js/tickets/resizable.js' %}"></script>
+<script type="text/javascript" src="{% static 'js/tickets/openImg.js' %}"></script>
+<script type="text/javascript" src="{% static 'js/tickets/main.js' %}"></script>
+
+</body>
+</html>

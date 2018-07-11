@@ -165,3 +165,10 @@
 
 	}
 /*  portfolio  */
+
+#portfolio-list{
+
+overflow: scroll;
+
+}
+
