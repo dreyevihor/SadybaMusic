@@ -115,6 +115,16 @@ body{
 #row{
 	background-color: yellow;
 }
+
+#price2{
+	background-color: green;
+}
+#place2{
+	background-color: blue;
+}
+#row2{
+	background-color: yellow;
+}
 #template{
 	display: inline-block;
 	max-width: 1000px;

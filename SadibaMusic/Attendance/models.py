@@ -10,3 +10,6 @@ class Attendance(models.Model):
 	place = models.IntegerField()
 	class Meta():
 		unique_together = (('event', 'row', 'place'),)
+
+	
+

@@ -57,7 +57,7 @@ vm2 = new Vue({
                 axios.post(window.location.toString(), {
                             'rows': vm1.rows,
                      }, {headers: headers}).then(function(response) {
-                               window.location.replace(response.request.responseURL);
+                        window.location.href = response.request.responseURL;
                                               })
 
             }

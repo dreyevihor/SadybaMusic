@@ -41,6 +41,9 @@ var vm2 = new Vue({
   rotateRow: false,
   rotatePlace: false,
   rotateBarcode: false,
+  rotatePrice2: false,
+  rotateRow2: false,
+  rotatePlace2: false,
  },
  methods: {
     click: function(){
@@ -64,6 +67,22 @@ var vm2 = new Vue({
         spinePrice.onmousedown = function(e){
           self.rotatePrice = !self.rotatePrice
         }
+
+        var spineRow = document.getElementById('row2').firstElementChild;
+        spineRow.onmousedown = function(e){
+          self.rotateRow2 = !self.rotateRow2
+        }
+
+        var spinePlace = document.getElementById('place2').firstElementChild;
+        spinePlace.onmousedown = function(e){
+          self.rotatePlace2 = !self.rotatePlace2
+        }
+
+        var spinePrice = document.getElementById('price2').firstElementChild;
+        spinePrice.onmousedown = function(e){
+          self.rotatePrice2 = !self.rotatePrice2
+        }
+
 
 
 
@@ -255,6 +274,145 @@ var vm2 = new Vue({
         };
         }
 
+        var place2 = document.getElementById('place2');
+
+        place2.onmousedown = function(e) {
+
+        var coords = getCoords(place2);
+          var shiftX = e.pageX - coords.left;
+          var shiftY = e.pageY - coords.top;
+
+          place2.style.position = 'absolute';
+          document.body.appendChild(place2);
+          moveAt(e);
+
+          place2.style.zIndex = 1000;
+
+          function moveAt(e) {
+            place2.style.left = e.pageX - shiftX + 'px';
+            place2.style.top = e.pageY - shiftY + 'px';
+          }
+
+          // 3, перемещать по экрану
+          document.onmousemove = function(e) {
+            moveAt(e);
+          }
+          document.onmouseup = function(){
+            document.onmousemove = null;
+            place2.onmouseup = null;
+          }
+
+          function getCoords(elem) {   // кроме IE8-
+          var box = elem.getBoundingClientRect();
+          return {
+            top: box.top + pageYOffset,
+            left: box.left + pageXOffset
+          };
+        }
+
+          // 4. отследить окончание переноса
+          place2.onmouseup = function() {
+            document.onmousemove = null;
+            place2.onmouseup = null;
+          }
+          place2.ondragstart = function() {
+          return false;
+        };
+        }
+
+        var row2 = document.getElementById('row2');
+
+        row2.onmousedown = function(e) {
+
+        var coords = getCoords(row2);
+          var shiftX = e.pageX - coords.left;
+          var shiftY = e.pageY - coords.top;
+
+          row2.style.position = 'absolute';
+          document.body.appendChild(row2);
+          moveAt(e);
+
+          row2.style.zIndex = 1000;
+
+          function moveAt(e) {
+            row2.style.left = e.pageX - shiftX + 'px';
+            row2.style.top = e.pageY - shiftY + 'px';
+          }
+
+          // 3, перемещать по экрану
+          document.onmousemove = function(e) {
+            moveAt(e);
+          }
+          document.onmouseup = function(){
+            document.onmousemove = null;
+            row2.onmouseup = null;
+          }
+
+          function getCoords(elem) {   // кроме IE8-
+          var box = elem.getBoundingClientRect();
+          return {
+            top: box.top + pageYOffset,
+            left: box.left + pageXOffset
+          };
+        }
+
+          // 4. отследить окончание переноса
+          row2.onmouseup = function() {
+            document.onmousemove = null;
+            row2.onmouseup = null;
+          }
+          row2.ondragstart = function() {
+          return false;
+        };
+        }
+
+
+        var price2 = document.getElementById('price2');
+
+        price2.onmousedown = function(e) {
+
+        var coords = getCoords(price2);
+          var shiftX = e.pageX - coords.left;
+          var shiftY = e.pageY - coords.top;
+
+          price2.style.position = 'absolute';
+          document.body.appendChild(price2);
+          moveAt(e);
+
+          price2.style.zIndex = 1000;
+
+          function moveAt(e) {
+            price2.style.left = e.pageX - shiftX + 'px';
+            price2.style.top = e.pageY - shiftY + 'px';
+          }
+
+          // 3, перемещать по экрану
+          document.onmousemove = function(e) {
+            moveAt(e);
+          }
+          document.onmouseup = function(){
+            document.onmousemove = null;
+            price2.onmouseup = null;
+          }
+
+          function getCoords(elem) {   // кроме IE8-
+          var box = elem.getBoundingClientRect();
+          return {
+            top: box.top + pageYOffset,
+            left: box.left + pageXOffset
+          };
+        }
+
+          // 4. отследить окончание переноса
+          price2.onmouseup = function() {
+            document.onmousemove = null;
+            price2.onmouseup = null;
+          }
+          price2.ondragstart = function() {
+          return false;
+        };
+        }
+
 
         var template = document.getElementById('template');
 
@@ -328,12 +486,15 @@ var vm3 = new Vue({
       var row = document.getElementById('row').getBoundingClientRect();
       var price = document.getElementById('price').getBoundingClientRect();
       var place = document.getElementById('place').getBoundingClientRect();
+      var row2 = document.getElementById('row2').getBoundingClientRect();
+      var price2 = document.getElementById('price2').getBoundingClientRect();
+      var place2 = document.getElementById('place2').getBoundingClientRect();
       var barcode = document.getElementById('barcode').getBoundingClientRect();
       var ticket = document.getElementById('template').getBoundingClientRect();
       this.rowData = {
         "isRotated": vm2.rotateRow,
         "left": (row.left - ticket.left)/ticket.width,
-        top: (row.top - ticket.top)/ticket.height
+        "top": (row.top - ticket.top)/ticket.height
       };
       this.priceData = {
         "isRotated": vm2.rotatePrice,
@@ -345,12 +506,27 @@ var vm3 = new Vue({
         "left": (place.left - ticket.left)/ticket.width,
         "top": (place.top - ticket.top)/ticket.height
       };
+      this.rowData2 = {
+        "isRotated": vm2.rotateRow2,
+        "left": (row2.left - ticket.left)/ticket.width,
+        "top": (row2.top - ticket.top)/ticket.height
+      };
+      this.priceData2 = {
+        "isRotated": vm2.rotatePrice2,
+        "left": (price2.left - ticket.left)/ticket.width,
+        "top": (price2.top - ticket.top)/ticket.height
+      };
+      this.placeData2 = {
+        "isRotated": vm2.rotatePlace2,
+        "left": (place2.left - ticket.left)/ticket.width,
+        "top": (place2.top - ticket.top)/ticket.height
+      };
       this.barcodeData = {
-        isRotated: vm2.rotateBarcode,
-        left: (barcode.left - ticket.left)/ticket.width,
-        top: (barcode.top - ticket.top)/ticket.height,
-        width: barcode.width/ticket.width,
-        height: barcode.height/ticket.height
+        "isRotated": vm2.rotateBarcode,
+        "left": (barcode.left - ticket.left)/ticket.width,
+        "top": (barcode.top - ticket.top)/ticket.height,
+        "width": barcode.width/ticket.width,
+        "height": barcode.height/ticket.height
       };
       if(this.barcodeData.left + this.barcodeData.width > 0 && this.barcodeData.left + this.barcodeData.width<1
          && this.rowData.left > 0 && this.rowData.left<1
@@ -370,6 +546,9 @@ var vm3 = new Vue({
         fb.append('row', JSON.stringify(this.rowData));
         fb.append('place', JSON.stringify(this.placeData));
         fb.append('price', JSON.stringify(this.priceData));
+        fb.append('row2', JSON.stringify(this.rowData2));
+        fb.append('place2', JSON.stringify(this.placeData2));
+        fb.append('price2', JSON.stringify(this.priceData2));
         headers = {"X-CSRFToken": vm3.token,
                    "content-type": "multipart/form-data"};
         axios({method: 'post',

@@ -50,8 +50,12 @@ class FillPriceView(View):
 class HallsDetail(generics.RetrieveAPIView):
 	serializer_class = HallSerializer
 	queryset = Schema_hall.objects.all()
+	permission_class = [IsAdminUser]
 
 	def get(self, request, *args, **kwargs):
 		return self.retrieve(request, *args, **kwargs)
 
-
+class HallsList(generics.ListAPIView):
+	serializer_class = HallListSerializer
+	permission_class = [IsAdminUser]
+	queryset = Schema_hall.objects.all()

@@ -12,3 +12,9 @@ class HallSerializer(serializers.ModelSerializer):
     class Meta:
         model = Schema_hall
         fields = ('id', 'name', 'rows')
+
+
+class HallListSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Schema_hall
+        fields = ('id', 'name')

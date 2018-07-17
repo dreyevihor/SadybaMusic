@@ -25,7 +25,8 @@ from rest_framework.authtoken import views as rest_framework_views
 
 
 from Event.views import * 
-from Halls.views import HallsDetail
+from Halls.views import HallsDetail, HallsList
+from Attendance.views import AttendanceCreateAPI
 from Authentication.views import LoginView
 
 urlpatterns = [
@@ -36,9 +37,11 @@ urlpatterns = [
     url(r'^sitemap.xml/', sitemap_view),
     url(r'^login/', LoginView.as_view()),
     url(r'^api/afisha/$', AfishaList.as_view()),
+    url(r'^api/attendance/$', AttendanceCreateAPI.as_view()),
     url(r'^api/portfolio/', PortfolioList.as_view()),
     url(r'^api/events/(?P<pk>[0-9]+)/$', EventDetail.as_view()),
     url(r'^api/halls/(?P<pk>[0-9]+)/$', HallsDetail.as_view()),
+    url(r'^api/halls/$', HallsList.as_view()),
     url(r'^api/events/$', EventList.as_view()),
     url(r'^api/get_auth_token/$', rest_framework_views.obtain_auth_token, name='get_auth_token'),
     url('tickets/', include('Tickets.urls')),

@@ -47,12 +47,12 @@ class PortfolioSerializer(serializers.Serializer):
 
 
 class EventSerializer(serializers.ModelSerializer):
-	portfolio_image = ImagePortfolioSerializer(many=True)
+	portfolio_images = ImagePortfolioSerializer(many=True)
 	class Meta:
 		model = Event
 		fields = ('id', 'title', 'afisha_image', 'portfolio_text',
 		 'afisha_text', 'place', 'status', 'price', 'min_price', 
-		 'max_price', 'date', 'portfolio_image')
+		 'max_price', 'date', 'portfolio_images')
 
 	def create(self, validated_data):
 		portfolio_image = validated_data.pop('portfolio_image')

@@ -6,32 +6,24 @@
     </head>
     <body>
         <div class="header">
-            <div class="head-capt">статистика вхід</div>
+            <div class="head-capt"></div>
             
         </div>
         <div class="content">
-            <div class="halls block">
-                <select class="block sel" size="4" multiple>
-                    <option value="asdas">aasdsd</option>
-                    <option value="asdas">zxzxx</option>
-                    <option value="asdas">zxczxczx</option>
-                    <option value="asdas">wwqeqweqw</option>
-                    <option value="asdas">asdasda</option>
-                    <option value="asdas">vvzxvzx</option>
-                    <option value="asdas">ggfdfddf</option>
+            <div id="download" class="halls block">
+                <select v-model="file" class="block sel" size="4" multiple>
+                    {% for link in links %}
+                    <option value="{{link.href}}">{{ link.event }}</option>
+                    {% endfor %}
+                    
                 </select>
             </div>
-            <div class="block create">
+            <a href="/tickets/create/"><div class="block create">
                 <p>Створити нові квитки</p>
-            </div>
+            </div></a>  
 
         </div>
-        <div class="footer">
-            <div class="r-link">
-                <p class="text-link">Далі</p>
-                <span class="to-right"></span>
-            </div>
-        </div>
+        
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
     <script src="{% static 'js/tickets/index.js' %}"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/js-cookie/2.2.0/js.cookie.min.js"></script>

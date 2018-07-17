@@ -5,11 +5,21 @@ from cryptography.fernet import Fernet
 import weasyprint
 
 from SadibaMusic import settings
+from .models import Tickets
+from Event.models import Event
 
 key = b'RLQHMwbjOj4ztWwPTkDTqBd3YYtF-g7S4W8bX4OItS8='
 cipher_suite = Fernet(key)
-cipher_text = cipher_suite.encrypt(b"A really secret message. Not for prying eyes.")
-plain_text = cipher_suite.decrypt(cipher_text)
+
+#cipher_text = cipher_suite.encrypt(b"A really secret message. Not for prying eyes.")
+#plain_text = cipher_suite.decrypt(cipher_text)
+
+
+def encrypt(val):
+	return cipher_suite.encrypt(bytes(val, 'utf-8')).decode('utf-8')
+
+def decrypt(val):
+	return cipher_suite.decrypt(bytes(val, 'utf-8')).decode('utf-8')
 
 
 def add_some_text(templ, obj_props, obj_value):
@@ -42,16 +52,21 @@ def make_ticket(price_val, row_val, place_val, **kwargs):
 	price_props = kwargs.get('price_props')
 	place_props = kwargs.get('place_props')
 	row_props = kwargs.get('row_props')
+	price2_props = kwargs.get('price2_props')
+	place2_props = kwargs.get('place2_props')
+	row2_props = kwargs.get('row2_props')
 	ticket_template = kwargs.get('ticket_template')
 	event_id = kwargs.get('event_id')
 
 		
 	ticket_template = add_some_text(ticket_template, price_props, price_val)
-	ticket_template = add_some_text(ticket_template, place_props, row_val)
-	ticket_template = add_some_text(ticket_template, row_props, place_val)
+	ticket_template = add_some_text(ticket_template, place_props, place_val)
+	ticket_template = add_some_text(ticket_template, row_props, row_val)
+	ticket_template = add_some_text(ticket_template, price2_props, price_val)
+	ticket_template = add_some_text(ticket_template, place2_props, place_val)
+	ticket_template = add_some_text(ticket_template, row2_props, row_val)
 	qr_val = {'event': event_id, 'row': row_val, 'place': place_val}
-	qr_val = json.dumps(qr_val)
-	print(qr_val)
+	qr_val = encrypt(json.dumps(qr_val))
 	ticket_template = add_qr(ticket_template, qr_props, qr_val)
 	return ticket_template
 
@@ -72,7 +87,7 @@ def folder_to_html_file(path):
     <body style="margin: 0; padding: 0;">
 	'''
 
-	for img in os.listdir(path):
+	for img in sorted(os.listdir(path), key=os.path.getmtime):
 		if img.endswith('.jpg') or img.endswith('.png'):
 			html_img = '<img src="{0}" alt="" style="width: 124%; height: auto; margin-bottom: 20px; margin-left: -12%;">\n'.format(os.path.join(path, img))
 			html+=html_img
@@ -87,9 +102,8 @@ def folder_to_html_file(path):
 	return os.path.join(path, 'pdf.html')
 
 def html_to_pdf(html_file, event_id):
-	path = os.path.join(settings.MEDIA_ROOT, 'tickets/')
-	pdf_name = path + 'tickets_' + str(event_id)+ '_' +str(random.randint(1, 10000)) +'.pdf'
-	weasyprint.HTML(html_file).write_pdf(str(pdf_name))
+	pdf_name = 'tickets/tickets_' + str(event_id)+ '_' +str(random.randint(1, 10000)) +'.pdf'
+	weasyprint.HTML(html_file).write_pdf(str(os.path.join(settings.MEDIA_ROOT, pdf_name)))
 	return(pdf_name)
 
 
@@ -102,19 +116,37 @@ def generate_tickets(rows, **kwargs):
 	price_props = kwargs.get('price_props')
 	place_props = kwargs.get('place_props')
 	row_props = kwargs.get('row_props')
+	price2_props = kwargs.get('price2_props')
+	place2_props = kwargs.get('place2_props')
+	row2_props = kwargs.get('row2_props')
 	ticket_template = kwargs.get('ticket_template')
 	event_id = kwargs.get('event_id')
 	tmp_dir = create_folder(event_id)
 	for row in rows:
-		for place in range(int(row['place_from']), int(row['place_to'])):
+		for place in range(int(row['place_from']), int(row['place_to'])+1):
 			img = make_ticket(
 				price_val = row['price'],
-				row_val = row['row'],
-				place_val = 20,
+				row_val = row['number'],
+				place_val = place,
 				event_id = event_id,
 				barcode_props = qr_props,
 				place_props = place_props,
 				price_props = price_props,
 				row_props = row_props,
+				place2_props = place2_props,
+				price2_props = price2_props,
+				row2_props = row2_props,
 				ticket_template = ticket_template
 			)
+			img_title = 'ticket_{0}_{1}_{2}.png'.format(event_id, row['number'], place)
+			img.save(os.path.join(tmp_dir, img_title))
+
+	html_file = folder_to_html_file(tmp_dir)
+	pdf = html_to_pdf(html_file, event_id)
+	clear_folder(tmp_dir)
+	event = Event.objects.get(pk = event_id)
+	tickets = Tickets(event = event)
+	tickets.tickets.name = pdf
+	tickets.save()
+
+

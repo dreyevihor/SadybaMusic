@@ -31,6 +31,18 @@
 		<span class="spine" @click="rotateRow=!rotateRow"></span>
 			ряд
 	</div>
+	<div id="price2" :class="{ rotate: rotatePrice2 }" class="simp-text drag">
+		<span class="spine" @click="rotatePrice2=!rotatePrice2"></span>
+			ціна
+	</div>	
+	<div id="place2" class="simp-text drag" :class="{ rotate: rotatePlace2 }">
+		<span class="spine" @click="rotatePlace2=!rotatePlace2"></span>
+			місце
+	</div>
+	<div id="row2" class="simp-text drag" :class="{ rotate: rotateRow2 }">
+		<span class="spine" @click="rotateRow2=!rotateRow2"></span>
+			ряд
+	</div>
 	<div id="barcode" class="barcode drag" :class="{ rotate: rotateBarcode }">
 	</div>
 	<div id="template" class="template drag">
