@@ -6,6 +6,6 @@ from Event.models import Event
 
 class Tickets(models.Model):
 	tickets = models.FileField(upload_to = 'tickets/')
-	event = models.ForeignKey(Event, on_delete = models.CASCADE)
+	event = models.OneToOneField(Event, on_delete = models.CASCADE, related_name = 'event')
 
 

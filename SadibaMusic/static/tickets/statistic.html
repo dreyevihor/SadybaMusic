@@ -1,0 +1,15 @@
+<html>
+    <head>
+            {% load static %}
+            <link rel="stylesheet" href="{% static 'css/tickets/main.css' %}">
+    </head>
+
+<body>
+    <ul>
+{% for i in attend %}
+ <li>{{ i.event__title }} --- {{ i.entries }} <a href="/attendance/clear/{{i.event__id}}">очистити</a></li>
+{% endfor %}
+</ul>
+</body>
+
+</html>

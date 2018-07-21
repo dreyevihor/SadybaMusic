@@ -80,24 +80,22 @@ def create_folder(event_id):
 			return folder
 
 def folder_to_html_file(path):
-	html = '''
+	with open(os.path.join(path, 'pdf.html'), 'w') as file:
+		file.write('''
 		<html>
-    <head>        
-    </head>
-    <body style="margin: 0; padding: 0;">
-	'''
-
-	for img in sorted(os.listdir(path), key=os.path.getmtime):
-		if img.endswith('.jpg') or img.endswith('.png'):
-			html_img = '<img src="{0}" alt="" style="width: 124%; height: auto; margin-bottom: 20px; margin-left: -12%;">\n'.format(os.path.join(path, img))
-			html+=html_img
-
-	html += '''
+			<head>        
+			</head>
+		<body style="margin: 0; padding: 0;">
+		''')
+		for img in sorted(os.listdir(path), key=lambda x: os.path.getmtime(os.path.join(path, x))):
+			if img.endswith('.jpg') or img.endswith('.png'):
+				file.write('<img src="{0}" alt="" style="width: 124%; height: auto; margin-bottom: 20px; margin-left: -12%;">\n'.format(os.path.join(path, img)))
+		file.write('''
 				</body>
 			</html>	
-			'''
-	with open(os.path.join(path, 'pdf.html'), 'w') as file:
-		file.write(html)
+			''')
+
+		
 		file.close()
 	return os.path.join(path, 'pdf.html')
 
@@ -138,7 +136,7 @@ def generate_tickets(rows, **kwargs):
 				row2_props = row2_props,
 				ticket_template = ticket_template
 			)
-			img_title = 'ticket_{0}_{1}_{2}.png'.format(event_id, row['number'], place)
+			img_title = 'ticket_{0}_{1}_{2}.jpg'.format(event_id, row['number'], place)
 			img.save(os.path.join(tmp_dir, img_title))
 
 	html_file = folder_to_html_file(tmp_dir)

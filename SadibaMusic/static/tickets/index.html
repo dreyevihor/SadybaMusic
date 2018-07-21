@@ -1,21 +1,24 @@
 <html>
     <head>
-        <title></title>
+        <title>Завантажити або створити квитки</title>
         {% load static %}
 	    <link rel="stylesheet" href="{% static 'css/tickets/main.css' %}">
     </head>
     <body>
         <div class="header">
-            <div class="head-capt"></div>
-            
+            <div class="head-capt">Завантажити або створити квитки</div>
+            <div class="head-file">
+                <a href="/attendance/stat/" ><h1>відвідуваність</h1></a>
+            </div>
         </div>
         <div class="content">
             <div id="download" class="halls block">
-                <select v-model="file" class="block sel" size="4" multiple>
+                <select v-model="file" class="block sel" size="4" >
                     {% for link in links %}
                     <option value="{{link.href}}">{{ link.event }}</option>
                     {% endfor %}
                     
+
                 </select>
             </div>
             <a href="/tickets/create/"><div class="block create">

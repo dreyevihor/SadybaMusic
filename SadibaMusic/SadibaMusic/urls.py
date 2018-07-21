@@ -29,6 +29,8 @@ from Halls.views import HallsDetail, HallsList
 from Attendance.views import AttendanceCreateAPI
 from Authentication.views import LoginView
 
+
+
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^afisha/', afisha_view),
@@ -46,5 +48,6 @@ urlpatterns = [
     url(r'^api/get_auth_token/$', rest_framework_views.obtain_auth_token, name='get_auth_token'),
     url('tickets/', include('Tickets.urls')),
     url('halls/', include('Halls.urls')),
+    url('attendance/', include('Attendance.urls')),
     url(r'^$', RedirectView.as_view(url='index/', permanent=False), name='index'),
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
