@@ -31,6 +31,7 @@ urlpatterns = [
     url(r'^afisha/', afisha_view),
     url(r'^portfolio/', portfolio_view),
     url(r'^index/', index_view),
+    url(r'^sitemap.xml/', sitemap_view),
     #url(r'^test/', LoginView.as_view()),
     url(r'^api/afisha/$', AfishaList.as_view()),
     url(r'^api/portfolio/', PortfolioList.as_view()),

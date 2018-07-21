@@ -2,8 +2,6 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
     <title>Bootstrap 101 Template</title>
 
@@ -28,23 +26,43 @@
       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
   </head>
-  <body style=" background-image: url({% static '/icon/bricks-afish.jpg'%});" >
+  <body style=" background-image: url({% static '/icon/background9.jpg'%});" >
   <div id="ttt">
+  [[crutch]]
   <div class="container-fluid">
     <div class="row">
       <div class="header">
         <div class="collapse navbar-collapse" id="responsive-menu">
               <ul class="nav navbar-nav col-lg-6 big-nav">
-                <li id="aa" ><a href="http://127.0.0.1:8000/index/#4" ><p><i class="glyphicon glyphicon-log-in"> Про нас</i></p></a></li>
-                <li id="aa" ><a href="http://127.0.0.1:8000/portfolio/#1" ><p><i class="glyphicon glyphicon-star">Портфоліо</i></p></a></li>
-                <li id="aa" ><a href="http://127.0.0.1:8000/afisha/" ><p><i class="glyphicon glyphicon-glass">Заходи</i></p></a></li>
-                <li id="aa" ><a href="http://127.0.0.1:8000/index/" ><p><i class="glyphicon glyphicon-home">Головна</i></p></a></li>
-                <div class="container logo-header">
+                <li class="header-link">
+                  <a href="/index/">
+                   <p><i class="glyphicon glyphicon-home"></i>Головна</p>
+                  </a>
+                </li>
+                <li class="header-link">
+                  <a href="/afisha/">
+                    <p><i class="glyphicon glyphicon-glass"></i>Заходи</p>
+                  </a>
+                </li>
+                <li class="header-link">
+                  <a href="/portfolio/#1">
+                    <p><i class="glyphicon glyphicon-star"></i>Портфоліо</p>
+                  </a>
+                </li>
+                <li class="header-link">
+                  <a href="/index/#4">
+                    <p><i class="glyphicon glyphicon-log-in"></i>Про нас</p>
+                  </a>
+                </li>
+                
+                
+
+              </ul>
+                <div class="container logo-white">
                   <div class="sadiba-logo">
-                    <img src="{% static 'icon/sadiba_white.png' %}" width="200px">
+                    <img src="{% static 'icon/sadiba_white.png'%}" width="200px">
                   </div>
                 </div>
-              </ul>
           </div>
         </div>
     </div>
@@ -55,9 +73,8 @@
           <div class="city-sort blue semi-square">
           <p><h4 class="black-bold" >Оберіть місто: </h4>
             <select v-model="place">
-              <option value="">a</option>
-              <option value="">v</option>
-              <option value="">c</option>
+              <option value=""></option>
+              <option v-for="plc in places">[[plc]]</option>
             </select>
           </p>
           </div>  
@@ -79,54 +96,11 @@
   
     <div class="afisha" v-bind:class="{'afisha-to-right': show, 'afisha-to-left': !show}">
       <div class="container-fluid" v-for="(event, index) in events">
-        <div class="row">[[crutch]]
+        <div class="row">
         <div class="img-container" v-bind:style="indents[index]">
-            <div class="tape-lt">
-              <svg class="tape">
-                <polygon points="0,100 100,0 100,15 115,15 115,30 130,30 30,130 30,115 15,115 15,100 " fill="#736e6e" fill-opacity=".5" stroke-width="1" stroke="rgb(0,0,0)" stroke-opacity=".5"/>
-              </svg>
-            </div>
             <img class="img-afish" v-bind:src="event.images" v-on:click="zoom_img=event.images"></img>
-            <div class="tape-rb">
-              <svg class="tape">
-                <polygon points="0,100 100,0 100,15 115,15 115,30 130,30 30,130 30,115 15,115 15,100 " fill="#736e6e" fill-opacity=".5" stroke-width="1" stroke="rgb(0,0,0)" stroke-opacity=".5"/>
-              </svg>
-            </div>
+            <button class="buy-btn" v-on:click="openBuyForm(index)" >Замовити квитки</button>
          </div> 
-        <div class="text-afish col-lg-8 hidden">
-
-          <div class="text-title">
-            <h1>{{obj.title}} <br> м. {{obj.place}}</h1>
-          </div>
-
-          <div class="afish-time">
-            <h1>{{obj.date|date:'j/n'}}<br>{{obj.date|date:'H:i'}}</h1>
-          </div>
-
-          <hr class="afish-divider">
-          
-          <div class="text">
-            <h3>{{obj.text}}</h3>
-          </div>
-          <hr class="afish-divider">
-          <div class="afish-bottom">
-            <div class = "phone-bottom">
-              <p><h4>Телефони для довідок: <br>+38 095 175 27 21<br>+38 067 747 98 07</h4></p>
-            </div>
-            <div class="afish-price">
-              <p>Ціна:</p>
-              
-              <p>
-                {%if obj.min_price is not None%}
-                {{obj.min_price}} - {{obj.max_price}} грн.
-              {%endif%}
-              {%if obj.price is not None%}
-                {{obj.price}} грн.
-              {%endif%}
-              </p>
-            </div>
-          </div>
-        </div>
     
       
         </div>
@@ -137,7 +111,20 @@
 <div class="zoom-img-container" v-on:click="zoom_img=!zoom_img" v-if="zoom_img">
   <img class="zoom-img" v-bind:src="zoom_img" v-if="zoom_img"></img>
 </div>
+<div class="zoom-img-container" v-show="buy_form_show">
 
+  <div class="buy-info">
+    <p>Щоб замовити квитки зателефонуйте за одним з наступних номерів:</p>
+    <hr>
+    <ul>
+      <li v-for="manager in buy_form_show">[[manager.phone]]</li>
+      <li>+38 095 175 27 21</li>
+      <li>+38 067 747 98 07</li>
+
+    </ul>
+    <span class="close" v-on:click="buy_form_show=false" ></span> 
+  </div>
+</div>
 
 </div>
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->

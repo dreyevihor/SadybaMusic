@@ -1,4 +1,4 @@
-new Vue({
+var vm = new Vue({
   el: '#ttt',
   data: {
     show: false,
@@ -8,17 +8,11 @@ new Vue({
     events: [],
     indents: [],
     zoom_img: '',
-    places: []
-
+    places: [],
+    buy_form_show: false
   },
 
-  created: function(){
-  	vm = this
-	  	axios.get('/api/afisha/').then(function(response){
-	 			vm.events =response.data
-	 		});
 
-  },
 
   watch:{
   	events: function(val){
@@ -31,6 +25,14 @@ new Vue({
 	  	} else if(steps < 0){
 	  		this.indents = this.indents.slice(Math.abs(steps))
 	  	}
+      for(var i = 0; i < this.events.length; i++){
+        this.places.push(this.events[i].place)
+      }
+      function onlyUnique(value, index, self) { 
+          return self.indexOf(value) === index && value !== null;
+      }
+      this.places = this.places.filter(onlyUnique)
+
 	  	
   	}
 
@@ -53,9 +55,12 @@ new Vue({
   
   methods:{
   	getStyle: function(){
-  		return {'left': 'calc(' + Math.random()*400 +'px)' };
-  	}
+  		return {'left': 'calc(' + Math.random()*300 +'px)' };
+  	},
 
+    openBuyForm: function(index){
+        this.buy_form_show = this.events[index].phones_of_managers
+    }
 
 
   },

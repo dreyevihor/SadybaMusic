@@ -8,7 +8,7 @@ from dateparser import parse
 from django_filters.rest_framework import DjangoFilterBackend
 
 
-from django.http import Http404, HttpResponseRedirect
+from django.http import Http404, HttpResponseRedirect, HttpResponse
 from django.shortcuts import render
 from django.template import Template, Context, RequestContext
 
@@ -77,6 +77,11 @@ def index_view(request):
 	template_name = '../../static/index.html'
 	context = {}
 	return render(request, 'index.html', context)
+
+
+
+def sitemap_view(request):
+	return HttpResponse(open('sitemap.xml').read(), content_type='text/xml')
 
 #api views
 

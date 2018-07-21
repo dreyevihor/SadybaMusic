@@ -12,6 +12,14 @@
     <link href="{% static 'css/bootstrap.css' %}" rel="stylesheet">
     <link href="{% static 'css/style.css' %}" rel="stylesheet">
     <link href="{% static 'css/act.css' %}" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/port-slider.css'%}">
+    <style type="text/css">
+      body::-webkit-scrollbar {
+        width: 0;
+      }
+
+    </style>
+    
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -28,17 +36,36 @@
     <div class="row">
       <div class="header-portfolio">
         <div class="collapse navbar-collapse" id="responsive-menu">
-              <ul class="nav navbar-nav col-lg-6 big-nav">
-                <li id="aa" ><a href="http://127.0.0.1:8000/index/#4" ><p><i class="glyphicon glyphicon-log-in"> Про нас</i></p></a></li>
-                <li id="aa" ><a href="http://127.0.0.1:8000/portfolio/#1" ><p><i class="glyphicon glyphicon-star">Портфоліо</i></p></a></li>
-                <li id="aa" ><a href="http://127.0.0.1:8000/afisha/" ><p><i class="glyphicon glyphicon-glass">Заходи</i></p></a></li>
-                <li id="aa" ><a href="http://127.0.0.1:8000/index/" ><p><i class="glyphicon glyphicon-home">Головна</i></p></a></li>
-                <div class="container logo-header">
+             <ul class="nav navbar-nav col-lg-6 big-nav">
+                <li class="header-link">
+                  <a href="/index/">
+                   <p><i class="glyphicon glyphicon-home"></i>Головна</p>
+                  </a>
+                </li>
+                <li class="header-link">
+                  <a href="/afisha/">
+                    <p><i class="glyphicon glyphicon-glass"></i>Заходи</p>
+                  </a>
+                </li>
+                <li class="header-link">
+                  <a href="/portfolio/#1">
+                    <p><i class="glyphicon glyphicon-star"></i>Портфоліо</p>
+                  </a>
+                </li>
+                <li class="header-link">
+                  <a href="/index/#4">
+                    <p><i class="glyphicon glyphicon-log-in"></i>Про нас</p>
+                  </a>
+                </li>
+                
+                
+
+              </ul>
+                <div class="container logo-white">
                   <div class="sadiba-logo">
                     <img src="{% static 'icon/sadiba_white.png'%}" width="250px">
                   </div>
                 </div>
-              </ul>
           </div>
           <div class="container-fluid">
             <div class="row">
@@ -58,31 +85,32 @@
         </div>
     </div>
   </div>
+  
 
 
   <div class="container-fluid">
     <div class="row">
       <div class="counters" id="counter">
           <div  style="margin-left: 3.5%;">
-            <div class="num-cont" data-num="30"><p>0</p></div>
+            <div class="num-cont" data-num="12"><p>0</p></div>
             <div class="text-cont">
               <p>Років на ринку</p>
             </div>
           </div>
           <div>
-            <div class="num-cont" data-num="20">0</div>
+            <div class="num-cont" data-num="1200">0</div>
             <div class="text-cont">
               Касових концертів
             </div>
           </div>
           <div>
-            <div class="num-cont" data-num="40">0</div>
-            <div class="text-cont">
-              Корпоративів та весіль
+            <div class="num-cont" data-num="800">0</div>
+            <div class="text-cont" style="font-size: 1.9em;">
+              Корпоративів та свят міст, сіл та інших заходів
             </div>
           </div>
           <div>
-            <div data-num="45" class="num-cont">0</div>
+            <div data-num="80" class="num-cont">0</div>
             <div class="text-cont">
               Артистів працює з нами
             </div>
@@ -98,6 +126,55 @@
   </div>
 
   </div>
+
+
+<div id="portfolio-list">
+
+  <div class="panel screen-2" v-for="(event, index) in events" :key="event.id">
+        <div class="promo-slid">
+        <p>[[event.id]]</p>
+      </div>
+      <div class="slider">
+            <carousel-3d :controls-visible="true" :controls-prev-html="'&#10092;'" :controls-next-html="'&#10093;'" 
+                         :controls-width="30" :controls-height="60" :clickable="false" 
+                         :count="events.length">
+              <slide v-for="(img, i) in event.portfolio_images" :index="i">
+                <figure>
+                  <img :src="img.image">
+                </figure>
+              </slide>
+              <slide v-for="(link, i) in event.portfolio_video" :index="i+event.portfolio_images.length">
+              <figure>
+                <iframe :src="link.link"></iframe>                
+              </figure>
+            </carousel-3d>
+          </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <!--
 
   {%for event in event_list%}
   {%for index, obj in event.items%}
@@ -174,14 +251,19 @@
     </div>
     {%endfor%}
     {%endfor%}
+    -->
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.js"></script>
     <script src="{% static 'js/jquery.easing.min.js'%}"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.min.js"></script>
+    <script src="https://rawgit.com/Wlada/vue-carousel-3d/master/dist/vue-carousel-3d.min.js"></script>
     <script src="{% static 'js/jquery.scrollify.min.js'%}"></script>
+    <script src="{% static 'js/portfolio.js'%}"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->
     <script src="{% static 'js/bootstrap.js'%}"></script>
     <script src="{% static 'js/numcount.js'%}"></script>
-    <script src="{% static 'js/main.js'%}"></script>
+
 
   </body>
 </html>
