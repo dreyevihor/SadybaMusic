@@ -45,7 +45,7 @@ vm2 = new Vue({
                              }, {headers: headers}).then(function(response) {
                                                 // handle success
         
-                                                window.location.href =response.request.responseURL;
+                                                window.location.href = response.request.responseURL;
                                               })
 
             }

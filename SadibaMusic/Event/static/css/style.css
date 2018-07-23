@@ -12,7 +12,7 @@
 #portfolio-list { -ms-overflow-style: none; }
  
 /* фф (свойство больше не работает, других способов тоже нет)*/
-#portfolio-list { overflow: -moz-scrollbars-none; }
+
 
 .topline {
 	height: 30px;

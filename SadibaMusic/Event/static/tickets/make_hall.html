@@ -35,18 +35,14 @@
                 </div>
                 <span class="close" @click="removeRow(i)"></span>
             </div>
-            {% csrf_token %}
             
             <div @click="addRow()" class="row-item plus-item">
                 <span class="plus"></span>
             </div>
-            [[rows]]
         </div>
         <div class="footer">
             <a>
             <form method="POST" class="r-link" id="send" @click="submit">
-                {% csrf_token %}
-                {% csrf_token %}
                 {% csrf_token %}
                 <p class="text-link">Заповнити цінами</p>
                 <span class="to-right"></span>

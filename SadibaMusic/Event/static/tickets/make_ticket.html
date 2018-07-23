@@ -19,7 +19,7 @@
 	</div>
 </div>
 <div id="app" class="content">
-	<div id="price" :class="{ rotate: rotatePrice }" class="simp-text, drag">
+	<div id="price" :class="{ rotate: rotatePrice }" class="simp-text drag">
 		<span class="spine" @click="rotatePrice=!rotatePrice"></span>
 			ціна
 	</div>	
@@ -31,8 +31,19 @@
 		<span class="spine" @click="rotateRow=!rotateRow"></span>
 			ряд
 	</div>
+	<div id="price2" :class="{ rotate: rotatePrice2 }" class="simp-text drag">
+		<span class="spine" @click="rotatePrice2=!rotatePrice2"></span>
+			ціна
+	</div>	
+	<div id="place2" class="simp-text drag" :class="{ rotate: rotatePlace2 }">
+		<span class="spine" @click="rotatePlace2=!rotatePlace2"></span>
+			місце
+	</div>
+	<div id="row2" class="simp-text drag" :class="{ rotate: rotateRow2 }">
+		<span class="spine" @click="rotateRow2=!rotateRow2"></span>
+			ряд
+	</div>
 	<div id="barcode" class="barcode drag" :class="{ rotate: rotateBarcode }">
-		<span class="spine" @click="rotateBarcode=!rotateBarcode"></span>
 	</div>
 	<div id="template" class="template drag">
 		<img :src="image">
@@ -42,15 +53,19 @@
 
 <div class="footer">
 	<div class="r-link" id="submit" @click="submit">
+			{% csrf_token %}
 		<p class="text-link">Згенерувати <br>квитки</p>
 		<span class="to-right"></span>
 	</div>
 </div>
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/js-cookie/2.2.0/js.cookie.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-<script type="text/javascript" src="{% static js/tickets/resizable.js %}"></script>
-<script type="text/javascript" src="{% static js/tickets/openImg.js %}"></script>
+<script type="text/javascript" src="{% static 'js/tickets/resizable.js' %}"></script>
+<script type="text/javascript" src="{% static 'js/tickets/openImg.js' %}"></script>
+<script type="text/javascript" src="{% static 'js/tickets/main.js' %}"></script>
 
 </body>
 </html>

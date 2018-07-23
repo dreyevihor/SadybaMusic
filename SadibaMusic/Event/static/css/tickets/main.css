@@ -98,7 +98,7 @@ body{
 
 #barcode{
 	width: 250px;
-	height: 50px;
+	height: 250px;
 	background-color: red;
 }
 
@@ -113,6 +113,16 @@ body{
 	background-color: blue;
 }
 #row{
+	background-color: yellow;
+}
+
+#price2{
+	background-color: green;
+}
+#place2{
+	background-color: blue;
+}
+#row2{
 	background-color: yellow;
 }
 #template{
@@ -137,7 +147,7 @@ body{
 	height: 10px;
 	border-radius: 5px;
 	background-color: white;
-	background-image: url('refresh.png');
+	background-image: url('../../icon/refresh.png');
 	background-size: cover;
 	cursor: pointer;
 }

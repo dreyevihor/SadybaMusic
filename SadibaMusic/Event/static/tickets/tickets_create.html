@@ -9,44 +9,35 @@
             <div class="head-capt">Оберіть захід та схему залу</div>
         </div>
         <div class="content">
-            <div class="events block">
+            <div class="events block" id="evnt">
                 <label class="block label">Оберіть захід: </label>
-                <input class="block" list="event"/>
-                <datalist id="event">
-                    <option value="Chrome">
-                    <option value="Firefox">
-                    <option value="Internet Explorer">
-                    <option value="Opera">
-                    <option value="Safari">
-                    <option value="Microsoft Edge">
+                <input class="block" list="event" v-model="check_event"/>
+                <datalist id="event">                    
+                    <option v-for = "event in events" :value="event.id">[[event.title]]</option>
                 </datalist>
             </div>
-            <div class="halls block">
+            <div id="halls" class="halls block">
                 <label class="block label">Оберіть схему залу: </label>
-                <select class="block sel" size="4" multiple>
-                    <option value="asdas">aasdsd</option>
-                    <option value="asdas">zxzxx</option>
-                    <option value="asdas">zxczxczx</option>
-                    <option value="asdas">wwqeqweqw</option>
-                    <option value="asdas">asdasda</option>
-                    <option value="asdas">vvzxvzx</option>
-                    <option value="asdas">ggfdfddf</option>
+                <select class="block sel" size="4" v-model="check_hall">
+                    <option value="-1">Створити нову</option>
+                    <option v-for="hall in halls" :value="hall.id">[[hall.name]]</option>
                 </select>
             </div>
 
 
         </div>
         <div class="footer">
-            <div class="r-link">
+                {% csrf_token %}
+            <div id="send" class="r-link" @click="submit">
                 <p class="text-link">Далі</p>
                 <span class="to-right"></span>
             </div>
         </div>
-    
-    
-    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
-    <script src="{% static 'js/tickets/tickets-create.js' %}"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/js-cookie/2.2.0/js.cookie.min.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="{% static 'js/tickets/tick_create.js' %}"></script>
+    
 
         
     </body>
