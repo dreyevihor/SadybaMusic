@@ -21,7 +21,7 @@ class Event(models.Model):
 	class Meta():
 		db_table = 'Event'
 		ordering = ('-date',)
-	title = models.CharField(null = True, blank = True, max_length = 30)
+	title = models.CharField(null = True, blank = True, max_length = 90)
 	afisha_image = models.ImageField(null = True, blank = True, upload_to= 'media/')
 	afisha_text = models.TextField(null = True, blank = True, max_length = 450)
 	portfolio_text = models.TextField(null = True, blank = True, max_length = 250)

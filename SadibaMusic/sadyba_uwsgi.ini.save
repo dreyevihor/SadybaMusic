@@ -1,0 +1,23 @@
+#sadyba_uwsgi.ini 
+[uwsgi]
+
+# Настройки, связанные с Django
+# Корневая папка проекта (полный путь)
+chdir           = /home/django/my_site
+# Django wsgi файл
+module          = my_site.wsgi
+# полный путь к виртуальному окружению
+home            = /home/django/SadybaMusic/venv
+# общие настройки
+# master
+master          = true
+# максимальное количество процессов
+processes       = 10
+# полный путь к файлу сокета
+socket          = /home/django/my_site/uwsgi_nginx.sock
+# права доступа к файлу сокета
+chmod-socket    = 666
+# очищать окружение от служебных файлов uwsgi по завершению
+vacuum          = true
+env             = DEBUG_MODE=False
+daemonize=/var/log/uwsgi/my_site.log

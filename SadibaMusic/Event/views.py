@@ -52,6 +52,8 @@ def index_view(request):
 	context = {}
 	return render(request, 'index.html', context)
 
+
+
 def sitemap_view(request):
 	return HttpResponse(open('sitemap.xml').read(), content_type='text/xml')
 
