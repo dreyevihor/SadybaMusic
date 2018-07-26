@@ -2,6 +2,8 @@ from django.shortcuts import render
 from django.views import View
 from django.template.response import TemplateResponse
 from django.shortcuts import redirect
+from django.contrib.auth.decorators import login_required
+from django.utils.decorators import method_decorator
 
 import json
 from PIL import Image
@@ -15,7 +17,7 @@ from Event.models import *
 # Create your views here.
 
 
-
+@method_decorator(login_required(login_url='/login/'), name='dispatch')
 class TicketsIndexView(View):
 	template = 'tickets/index.html'
 	def get(self, request):
@@ -31,7 +33,7 @@ class TicketsIndexView(View):
 
 	
 
-
+@method_decorator(login_required(login_url='/login/'), name='dispatch')
 class TicketsCreateView(View):
 	template = 'tickets/tickets_create.html'
 	def get(self, request):
@@ -48,7 +50,7 @@ class TicketsCreateView(View):
 		else:
 			return redirect('/halls/fillPrice/'+str(hall))
 
-
+@method_decorator(login_required(login_url='/login/'), name='dispatch')
 class TicketsSchemaView(View):
 	template = 'tickets/make_ticket.html'
 
@@ -82,6 +84,6 @@ class TicketsSchemaView(View):
 
 		
 		
-		return TemplateResponse(request, self.template, {})
+		return redirect('/tickets/index/')
 
 

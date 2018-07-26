@@ -52,10 +52,13 @@
 
 
 <div class="footer">
-	<div class="r-link" id="submit" @click="submit">
+	<div class="r-link" id="submit">
+		<div class="pre-loader" v-if="loading"></div>
 			{% csrf_token %}
+		<div @click="submit">
 		<p class="text-link">Згенерувати <br>квитки</p>
 		<span class="to-right"></span>
+		</div>
 	</div>
 </div>
 <script src="https://unpkg.com/axios/dist/axios.min.js"></script>

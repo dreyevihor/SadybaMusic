@@ -480,9 +480,11 @@ var vm3 = new Vue({
     barcodeData: '',
     ticketData:'',
     token: '',
+    loading: false,
   },
   methods: {
     submit: function(){
+      this.loading = true
       var row = document.getElementById('row').getBoundingClientRect();
       var price = document.getElementById('price').getBoundingClientRect();
       var place = document.getElementById('place').getBoundingClientRect();
@@ -555,8 +557,13 @@ var vm3 = new Vue({
                 url: '/tickets/ticketSchema/',
                 data: fb,
                 headers: headers
-        });
+        }).then(function(response) {
+          window.location.href = response.request.responseURL;
+                        });
     
+    }
+    else{
+      this.loading = false
     }
           
     }

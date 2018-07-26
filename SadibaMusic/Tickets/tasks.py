@@ -23,7 +23,7 @@ def decrypt(val):
 
 
 def add_some_text(templ, obj_props, obj_value):
-	font = ImageFont.truetype('/home/ihor/Documents/sadyba-music/SadibaMusic/Tickets/Times_New_Roman_Normal.ttf', 20)
+	font = ImageFont.truetype(os.path.join(settings.BASE_DIR, 'Tickets/Times_New_Roman_Normal.ttf'), 20)
 	width, height = templ.size
 	obj = Image.new('RGBA', (40, 18), (255,255,255,255))
 	obj_dr = ImageDraw.Draw(obj)

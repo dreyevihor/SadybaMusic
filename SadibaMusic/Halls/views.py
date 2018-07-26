@@ -2,6 +2,9 @@ from django.views import View
 from django.template.response import TemplateResponse
 from django.http import HttpResponseRedirect
 from django.shortcuts import redirect, render
+from django.contrib.auth.decorators import login_required
+from django.utils.decorators import method_decorator
+
 
 from . import forms
 from Halls.models import *
@@ -17,6 +20,7 @@ from rest_framework.permissions import IsAdminUser
 import json
 
 # Create your views here.
+@method_decorator(login_required(login_url='/login/'), name='dispatch')
 class CreateHallView(View):
 	template = 'tickets/make_hall.html'
 	form_class = forms.RowForm
@@ -37,7 +41,7 @@ class CreateHallView(View):
 						'place_to': row['place_to']})
 		return redirect('/halls/fillPrice/' + str(hall.id))
 
-
+@method_decorator(login_required(login_url='/login/'), name='dispatch')
 class FillPriceView(View):
 	template = 'tickets/hall_fill.html'
 	def get(self, request, hall):
